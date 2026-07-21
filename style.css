@@ -1,0 +1,349 @@
+/* Quick & Quality - Liquid Glass System & Global Theme Architecture */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap');
+
+/* ==========================================
+   THEME TOKENS SYSTEM
+   ========================================== */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #000000;
+  --bg-secondary: #080808;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --glass-bg: rgba(255, 255, 255, 0.01);
+  --glass-highlight: rgba(255, 255, 255, 0.45);
+  --primary: #0EA5E9;
+  --primary-hover: #0284C7;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --whatsapp: #25D366;
+}
+
+[data-theme="light"] {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f5;
+  --text-primary: #000000;
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --glass-bg: rgba(255, 255, 255, 0.35);
+  --glass-highlight: rgba(255, 255, 255, 0.8);
+  --primary: #0EA5E9;
+  --primary-hover: #0284C7;
+  --card-border: rgba(0, 0, 0, 0.08);
+  --whatsapp: #25D366;
+}
+
+/* Base Body Styles */
+html {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dynamic Font Family */
+html[dir="rtl"] body {
+  font-family: 'Tajawal', 'Plus Jakarta Sans', sans-serif;
+}
+
+html[dir="ltr"] body {
+  font-family: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
+}
+
+.logo-tagline {
+  font-family: 'Caveat', 'Tajawal', cursive;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================
+   LIQUID GLASS DESIGN SYSTEM (GLOBAL UI)
+   ========================================== */
+
+/* Glass Variant 1 — Subtle Glass */
+.liquid-glass {
+  background: var(--glass-bg);
+  background-blend-mode: luminosity;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: none;
+
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.15),
+    0 8px 30px rgba(0, 0, 0, 0.18);
+
+  position: relative;
+  overflow: hidden;
+
+  color: var(--text-primary);
+}
+
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.15) 80%,
+      rgba(255, 255, 255, 0.45) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Glass Variant 2 — Strong Glass */
+.liquid-glass-strong {
+  background: var(--glass-bg);
+  background-blend-mode: luminosity;
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  color: var(--text-primary);
+}
+
+.liquid-glass-strong::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.4px;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.2) 80%,
+      rgba(255, 255, 255, 0.5) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Framer Motion Interaction System for Glass Elements */
+button.liquid-glass,
+button.liquid-glass-strong,
+a.liquid-glass,
+a.liquid-glass-strong,
+.interactive-glass {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.liquid-glass:hover,
+button.liquid-glass-strong:hover,
+a.liquid-glass:hover,
+a.liquid-glass-strong:hover,
+.interactive-glass:hover {
+  filter: brightness(1.15);
+  transform: scale(1.03);
+}
+
+button.liquid-glass:active,
+button.liquid-glass-strong:active,
+a.liquid-glass:active,
+a.liquid-glass-strong:active,
+.interactive-glass:active {
+  transform: scale(0.97);
+}
+
+/* ==========================================
+   FLOATING UTILITY CONTROLS
+   ========================================== */
+.floating-utility-controls {
+  position: fixed;
+  top: 20px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: utilityFloatIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+html[dir="ltr"] .floating-utility-controls {
+  right: 24px;
+  left: auto;
+}
+
+html[dir="rtl"] .floating-utility-controls {
+  left: 24px;
+  right: auto;
+}
+
+@keyframes utilityFloatIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Theme Switcher Button Mechanics (44px x 44px) */
+.theme-toggle-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 9999px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.08) !important;
+  filter: brightness(1.15) !important;
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.95) !important;
+}
+
+/* Framer Motion Icon Switch Animation */
+.theme-icon-box {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.theme-icon-svg {
+  width: 22px;
+  height: 22px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  fill: currentColor;
+}
+
+.theme-icon-svg.entering {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.8);
+}
+
+.theme-icon-svg.active {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+/* Navbar Dynamic Link Styling */
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+  color: var(--text-secondary);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-link.active {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--primary);
+  border-radius: 2px;
+}
+
+/* FAQ Accordion Styling */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s cubic-bezier(0, 1, 0, 1), padding 0.3s ease;
+}
+
+.faq-item.open .faq-content {
+  max-height: 500px;
+  transition: max-height 0.5s ease-in-out, padding 0.3s ease;
+}
+
+.faq-item.open .icon-arrow {
+  transform: rotate(180deg);
+  color: var(--primary);
+}
+
+/* Theme Adaptive Helpers */
+.bg-theme-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.text-theme-primary {
+  color: var(--text-primary);
+}
+
+.text-theme-secondary {
+  color: var(--text-secondary);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Mobile Drawer Overlay */
+#mobile-drawer {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#mobile-drawer.hidden-drawer {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(100%);
+}
+
+html[dir="ltr"] #mobile-drawer.hidden-drawer {
+  transform: translateX(-100%);
+}
+
+#mobile-drawer.visible-drawer {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}

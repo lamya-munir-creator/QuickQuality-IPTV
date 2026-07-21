@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="w-full h-full">
+  <!-- Outer Blue Circle -->
+  <circle cx="95" cy="85" r="75" fill="#0EA5E9" />
+  <!-- White Ring -->
+  <circle cx="95" cy="85" r="48" fill="#FFFFFF" />
+  <!-- Inner Blue Dot -->
+  <circle cx="95" cy="85" r="26" fill="#0EA5E9" />
+  <!-- Diagonal Cutout White Band -->
+  <path d="M 85 85 L 138 138 L 122 138 L 69 85 Z" fill="#FFFFFF" />
+  <!-- Diagonal Main Blue Tail -->
+  <path d="M 95 85 L 158 148 L 135 148 L 72 85 Z" fill="#0EA5E9" />
+  <!-- Diagonal Outer Blue Tail Stripe -->
+  <path d="M 116 106 L 168 158 L 144 158 L 92 106 Z" fill="#0EA5E9" />
+</svg>

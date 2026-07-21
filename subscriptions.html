@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick & Quality - Subscriptions | باقات الاشتراك</title>
+  <meta name="description"
+    content="اختر باقة الاشتراك المناسبة لك مع خيارات شهرية وسنوية مرنة. بث 4K وتفعيل فوري عبر الواتساب." />
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Custom CSS Link -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="min-h-screen antialiased selection:bg-[#0EA5E9] selection:text-white">
+
+  <!-- ==========================================
+      1. HEADER & NAVBAR CONTAINER
+     ========================================== -->
+  <header class="sticky top-4 z-50 px-4 sm:px-6 max-w-7xl mx-auto">
+    <nav class="liquid-glass rounded-full px-4 sm:px-6 py-3 flex items-center justify-between gap-3 shadow-2xl">
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3 group shrink-0">
+        <div
+          class="liquid-glass rounded-full w-10 h-10 sm:w-11 sm:h-11 p-2 flex items-center justify-center group-hover:scale-105 transition-transform">
+          <img src="logo.svg" alt="Quick & Quality Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
+        </div>
+        <div class="hidden sm:block">
+          <span data-i18n="brand_title"
+            class="text-base sm:text-lg font-extrabold tracking-tight text-theme-primary block leading-none">Quick &
+            Quality</span>
+          <span data-i18n="brand_tagline"
+            class="logo-tagline text-[11px] sm:text-xs text-[#0EA5E9] font-bold mt-0.5 block">go quick .. keep
+            quality</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links (Visible ONLY >= 1024px: hidden lg:flex) -->
+      <div class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-semibold">
+        <a href="index.html" data-i18n="nav_home" class="nav-link">الرئيسية</a>
+        <a href="about.html" data-i18n="nav_about" class="nav-link">لماذا نحن</a>
+        <a href="subscriptions.html" data-i18n="nav_subscriptions" class="nav-link active text-[#0EA5E9]">الاشتراكات</a>
+        <a href="faq.html" data-i18n="nav_faq" class="nav-link">الأسئلة الشائعة</a>
+      </div>
+
+      <!-- Action Buttons & Controls (Right side group) -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <!-- Desktop CTA Buttons (Visible ONLY >= 1024px: hidden lg:flex) -->
+        <div class="hidden lg:flex items-center gap-2">
+          <a href="subscriptions.html" data-i18n="btn_view_plans"
+            class="liquid-glass-strong rounded-full px-4 py-2 text-white font-bold text-xs sm:text-sm shadow-md bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/30">
+            عرض الاشتراكات
+          </a>
+          <button onclick="openWhatsAppTrial()"
+            class="liquid-glass rounded-full px-3.5 py-2 text-emerald-400 font-bold text-xs sm:text-sm flex items-center gap-1.5">
+            <i class="fa-brands fa-whatsapp text-base"></i> <span data-i18n="btn_free_trial">تجربة مجانية</span>
+          </button>
+        </div>
+
+        <!-- Language Button (Inside navbar, visible on Desktop, Tablet & Mobile) -->
+        <button id="language-toggle" onclick="toggleLanguage()" title="Switch Language" aria-label="Change language"
+          class="liquid-glass rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-theme-primary hover:scale-105 transition-transform shrink-0">
+          <i class="fa-solid fa-globe text-sm sm:text-base"></i>
+        </button>
+
+        <!-- Theme Toggle (Inside navbar, visible on Desktop, Tablet & Mobile) -->
+        <button id="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle dark mode"
+          class="liquid-glass rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-theme-primary hover:scale-105 transition-transform shrink-0">
+          <i id="theme-icon" class="fa-solid fa-moon text-sm sm:text-base"></i>
+        </button>
+
+        <!-- Mobile Menu Button (Visible ONLY < 1024px: flex lg:hidden) -->
+        <button id="mobile-menu-btn" aria-label="Open menu"
+          class="flex lg:hidden liquid-glass rounded-full w-9 h-9 sm:w-10 sm:h-10 items-center justify-center text-theme-primary shrink-0">
+          <i class="fa-solid fa-bars-staggered text-base sm:text-lg"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden-drawer flex justify-start">
+    <div class="w-4/5 max-w-sm liquid-glass h-full p-6 flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="liquid-glass rounded-full w-10 h-10 p-2 flex items-center justify-center">
+              <img src="logo.svg" alt="Quick & Quality Logo" class="w-7 h-7 object-contain" />
+            </div>
+            <div>
+              <span data-i18n="brand_title" class="font-bold text-theme-primary block leading-tight">Quick &
+                Quality</span>
+              <span data-i18n="brand_tagline" class="logo-tagline text-[11px] text-[#0EA5E9] font-bold">go quick .. keep
+                quality</span>
+            </div>
+          </div>
+          <button id="close-drawer-btn"
+            class="liquid-glass rounded-full w-9 h-9 flex items-center justify-center text-theme-secondary text-lg">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-3 font-bold text-theme-primary">
+          <a href="index.html" class="liquid-glass px-4 py-3 rounded-xl flex items-center justify-between">
+            <span data-i18n="nav_home">الرئيسية</span>
+            <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
+          </a>
+          <a href="about.html" class="liquid-glass px-4 py-3 rounded-xl flex items-center justify-between">
+            <span data-i18n="nav_about">لماذا نحن</span>
+            <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
+          </a>
+          <a href="subscriptions.html"
+            class="liquid-glass px-4 py-3 rounded-xl text-[#0EA5E9] flex items-center justify-between">
+            <span data-i18n="nav_subscriptions">الاشتراكات</span>
+            <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
+          </a>
+          <a href="faq.html" class="liquid-glass px-4 py-3 rounded-xl flex items-center justify-between">
+            <span data-i18n="nav_faq">الأسئلة الشائعة</span>
+            <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
+          </a>
+        </nav>
+      </div>
+
+      <div class="pt-6 border-t border-white/10 space-y-3">
+        <button onclick="openWhatsAppTrial()"
+          class="liquid-glass rounded-full w-full py-3 text-emerald-400 font-bold flex items-center justify-center gap-2">
+          <i class="fa-brands fa-whatsapp text-xl"></i> <span data-i18n="btn_free_trial">تجربة مجانية عبر
+            الواتساب</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBSCRIPTIONS SECTION -->
+  <section class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center space-y-3 mb-12">
+      <span data-i18n="sub_title_badge"
+        class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 inline-block">باقاتنا
+        المميزة</span>
+      <h1 data-i18n="sub_heading" class="text-3xl sm:text-5xl font-black text-theme-primary">اختر باقة الترفيه المناسبة
+        لك</h1>
+      <p data-i18n="sub_desc" class="text-theme-secondary max-w-xl mx-auto text-sm leading-relaxed">
+        أسعار مرنة تناسب احتياجاتك الترفيهية مع دعم كامل لجودة 4K والتفعيل الفوري.
+      </p>
+    </div>
+
+    <!-- DURATION PERIOD SWITCHER -->
+    <div class="flex justify-center mb-16">
+      <div class="liquid-glass rounded-full p-1.5 inline-flex gap-1.5 shadow-xl">
+        <button data-period="monthly"
+          class="duration-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-[#0EA5E9] text-white shadow-md transition-all">
+          <span data-i18n="period_monthly">شهري</span>
+        </button>
+        <button data-period="quarterly"
+          class="duration-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-theme-secondary hover:text-theme-primary transition-all">
+          <span data-i18n="period_quarterly">3 أشهر</span>
+        </button>
+        <button data-period="semiannual"
+          class="duration-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-theme-secondary hover:text-theme-primary transition-all">
+          <span data-i18n="period_semiannual">6 أشهر</span>
+        </button>
+        <button data-period="annual"
+          class="duration-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-theme-secondary hover:text-theme-primary transition-all">
+          <span data-i18n="period_annual">سنة كاملة</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- SUBSCRIPTIONS GRID (3 CARDS) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+
+      <!-- Card 1: Sports -->
+      <div data-plan-key="sports"
+        class="plan-card liquid-glass p-8 rounded-[28px] flex flex-col justify-between card-hover">
+        <div>
+          <h3 data-i18n="plan_sports_title" class="text-xl font-extrabold text-theme-primary">باقة الرياضة والبث المباشر
+          </h3>
+          <p data-i18n="plan_sports_sub" class="text-xs text-theme-secondary mt-1">مثالية لعشاق الرياضة والمباريات
+            العالمية</p>
+
+          <div class="my-6">
+            <span class="plan-price text-4xl font-black text-theme-primary">$12</span>
+            <span class="plan-duration text-theme-secondary text-sm"> / Monthly / شهر واحد</span>
+          </div>
+
+          <ul class="space-y-4 text-sm text-theme-secondary mb-8 font-medium">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_low_latency">سيرفرات فائقة السرعة منخفضة التأخير</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_4k_quality">بث عالي الدقة Full HD & 4K</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_1_device">اتصال جهاز واحد</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_support_247">دعم فني وتفعيل عبر الواتساب 24/7</span></li>
+          </ul>
+        </div>
+
+        <button data-plan-name="باقة الرياضة والبث المباشر" data-plan-title-key="plan_sports_title"
+          data-features="Ultra-Low Latency, Full HD & 4K, 1 Device, 24/7 Support"
+          onclick="orderViaWhatsApp('plan_sports_title', '$12', 'Monthly', 'Ultra-Low Latency, Full HD & 4K, 1 Device, 24/7 Support')"
+          class="plan-order-btn liquid-glass-strong rounded-full w-full py-4 px-6 text-white font-bold text-center shadow-lg transition-all flex items-center justify-center gap-3 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/40">
+          <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i> <span data-i18n="btn_subscribe_now">اشترك الآن
+            عبر الواتساب</span>
+        </button>
+      </div>
+
+      <!-- Card 2: VIP Cinema & TV (Center / Most Popular) -->
+      <div data-plan-key="vip"
+        class="plan-card liquid-glass-strong p-8 rounded-[28px] flex flex-col justify-between relative lg:-translate-y-4">
+        <div data-i18n="most_popular"
+          class="absolute -top-4 left-1/2 -translate-x-1/2 liquid-glass-strong text-[#0EA5E9] border border-[#0EA5E9]/40 px-5 py-1.5 rounded-full text-xs font-black tracking-wider uppercase shadow-md">
+          الأكثر طلباً ⭐
+        </div>
+
+        <div>
+          <h3 data-i18n="plan_vip_title" class="text-2xl font-black text-theme-primary mt-2">باقة VIP Cinema & TV</h3>
+          <p data-i18n="plan_vip_sub" class="text-xs text-theme-secondary mt-1">الباقة الشاملة الأكثر طلباً للمشاهدة
+            العائلية والسينما</p>
+
+          <div class="my-6">
+            <span class="plan-price text-5xl font-black text-theme-primary">$10</span>
+            <span class="plan-duration text-theme-secondary text-sm"> / Monthly / شهر واحد</span>
+          </div>
+
+          <ul class="space-y-4 text-sm text-theme-secondary mb-8 font-medium">
+            <li class="flex items-center gap-3 font-bold text-theme-primary"><i
+                class="fa-solid fa-check text-[#0EA5E9] text-base"></i> <span data-i18n="feat_channels_count">20,000+
+                قناة و50,000+ فيلم ومسلسل</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_4k_quality">بث عالي الدقة Full HD & 4K</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_multi_device">توافق مع جميع الأجهزة الذكية</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_daily_updates">إضافات يومية للأفلام والمسلسلات</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_support_247">دعم فني وتفعيل عبر الواتساب 24/7</span></li>
+          </ul>
+        </div>
+
+        <button data-plan-name="باقة VIP Cinema & TV" data-plan-title-key="plan_vip_title"
+          data-features="20,000+ Channels & VODs, True 4K, Multi-Device, Daily VIP Updates, 24/7 Support"
+          onclick="orderViaWhatsApp('plan_vip_title', '$10', 'Monthly', '20,000+ Channels & VODs, True 4K, Multi-Device, Daily VIP Updates, 24/7 Support')"
+          class="plan-order-btn liquid-glass-strong rounded-full w-full py-4 px-6 text-white font-extrabold text-center shadow-xl transition-all flex items-center justify-center gap-3 bg-[#0EA5E9]/40 hover:bg-[#0EA5E9]/60">
+          <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i> <span data-i18n="btn_subscribe_now">اشترك الآن
+            عبر الواتساب</span>
+        </button>
+      </div>
+
+      <!-- Card 3: Basic -->
+      <div class="plan-card liquid-glass p-8 rounded-[28px] flex flex-col justify-between card-hover">
+        <div>
+          <h3 data-i18n="plan_basic_title" class="text-xl font-extrabold text-theme-primary">الباقة الاقتصادية Basic
+          </h3>
+          <p data-i18n="plan_basic_sub" class="text-xs text-theme-secondary mt-1">القنوات الأساسية بقيمة ممتازة ومناسبة
+          </p>
+
+          <div class="my-6">
+            <span class="plan-price text-4xl font-black text-theme-primary">$7</span>
+            <span class="plan-duration text-theme-secondary text-sm"> / Monthly / شهر واحد</span>
+          </div>
+
+          <ul class="space-y-4 text-sm text-theme-secondary mb-8 font-medium">
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_essential_channels">القنوات الفضائية الأساسية بجودة HD</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_1_device">اتصال جهاز واحد</span></li>
+            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
+                data-i18n="feat_support_247">دعم فني وتفعيل عبر الواتساب 24/7</span></li>
+          </ul>
+        </div>
+
+        <button data-plan-name="الباقة الاقتصادية Basic" data-plan-title-key="plan_basic_title"
+          data-features="Essential Live HD Channels, 1 Device Connection, 24/7 WhatsApp Support"
+          onclick="orderViaWhatsApp('plan_basic_title', '$7', 'Monthly', 'Essential Live HD Channels, 1 Device Connection, 24/7 WhatsApp Support')"
+          class="plan-order-btn liquid-glass-strong rounded-full w-full py-4 px-6 text-white font-bold text-center shadow-lg transition-all flex items-center justify-center gap-3 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/40">
+          <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i> <span data-i18n="btn_subscribe_now">اشترك الآن
+            عبر الواتساب</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CHANNEL PREVIEW FILTER -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 my-12">
+    <div class="text-center space-y-3 mb-10">
+      <h2 data-i18n="filter_all" class="text-2xl sm:text-3xl font-black text-theme-primary">معاينة تصنيفات القنوات
+        والسينما</h2>
+      <p class="text-theme-secondary text-xs sm:text-sm">تصفح القنوات المتاحة حسب التصنيف</p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex justify-center gap-3 mb-10 flex-wrap">
+      <button data-filter="all"
+        class="filter-tab active liquid-glass rounded-full px-5 py-2.5 text-xs font-bold text-[#0EA5E9] border border-[#0EA5E9]/40">
+        <span data-i18n="filter_all">جميع القنوات</span>
+      </button>
+      <button data-filter="sports"
+        class="filter-tab liquid-glass rounded-full px-5 py-2.5 text-xs font-bold text-theme-secondary hover:text-theme-primary">
+        <span data-i18n="filter_sports">القنوات الرياضية</span>
+      </button>
+      <button data-filter="cinema"
+        class="filter-tab liquid-glass rounded-full px-5 py-2.5 text-xs font-bold text-theme-secondary hover:text-theme-primary">
+        <span data-i18n="filter_cinema">الأفلام والسينما</span>
+      </button>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+      <div data-category="sports" class="channel-item p-4 rounded-2xl liquid-glass flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-xl liquid-glass-strong text-[#0EA5E9] flex items-center justify-center font-bold text-lg">
+          <i class="fa-solid fa-trophy"></i></div>
+        <div>
+          <h4 class="font-extrabold text-xs text-theme-primary">beIN Sports 4K</h4>
+          <span class="text-[10px] text-emerald-400 font-bold">Ultra HD Live</span>
+        </div>
+      </div>
+
+      <div data-category="sports" class="channel-item p-4 rounded-2xl liquid-glass flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-xl liquid-glass-strong text-[#0EA5E9] flex items-center justify-center font-bold text-lg">
+          <i class="fa-solid fa-football"></i></div>
+        <div>
+          <h4 class="font-extrabold text-xs text-theme-primary">SSC Sports HD</h4>
+          <span class="text-[10px] text-emerald-400 font-bold">Full HD Live</span>
+        </div>
+      </div>
+
+      <div data-category="cinema" class="channel-item p-4 rounded-2xl liquid-glass flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-xl liquid-glass-strong text-purple-400 flex items-center justify-center font-bold text-lg">
+          <i class="fa-solid fa-film"></i></div>
+        <div>
+          <h4 class="font-extrabold text-xs text-theme-primary">OSN Cinema VIP</h4>
+          <span class="text-[10px] text-purple-400 font-bold">4K VOD</span>
+        </div>
+      </div>
+
+      <div data-category="cinema" class="channel-item p-4 rounded-2xl liquid-glass flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-xl liquid-glass-strong text-purple-400 flex items-center justify-center font-bold text-lg">
+          <i class="fa-solid fa-clapperboard"></i></div>
+        <div>
+          <h4 class="font-extrabold text-xs text-theme-primary">Netflix Series VOD</h4>
+          <span class="text-[10px] text-purple-400 font-bold">Daily Updated</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="liquid-glass pt-16 pb-10 rounded-t-[40px] border-t border-white/10">
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+      <div class="lg:col-span-5 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="liquid-glass rounded-full w-10 h-10 p-2 flex items-center justify-center">
+            <img src="logo.svg" alt="Quick & Quality Logo" class="w-7 h-7 object-contain" />
+          </div>
+          <div>
+            <span data-i18n="brand_title"
+              class="text-xl font-extrabold tracking-tight text-theme-primary block leading-none">Quick & Quality</span>
+            <span data-i18n="brand_tagline" class="logo-tagline text-xs text-[#0EA5E9] font-bold mt-0.5 block">go quick
+              .. keep quality</span>
+          </div>
+        </div>
+        <p data-i18n="footer_brief" class="text-theme-secondary text-xs sm:text-sm leading-relaxed max-w-md">
+          جاهز لبدء أفضل تجربة بث سينمائي ورياضي؟ نوفر لك أعلى مستويات الجودة والثبات مع تفعيل فوري ودعم متواصل عبر
+          الواتساب على مدار الساعة.
+        </p>
+      </div>
+
+      <div class="lg:col-span-3 space-y-3">
+        <h4 data-i18n="footer_nav_header" class="text-xs font-extrabold uppercase text-theme-primary tracking-wider">
+          روابط الموقع</h4>
+        <ul class="space-y-2.5 text-sm text-theme-secondary font-semibold">
+          <li><a href="index.html" data-i18n="nav_home" class="hover:text-[#0EA5E9] transition-colors">الرئيسية</a></li>
+          <li><a href="about.html" data-i18n="nav_about" class="hover:text-[#0EA5E9] transition-colors">لماذا نحن</a>
+          </li>
+          <li><a href="subscriptions.html" data-i18n="nav_subscriptions"
+              class="hover:text-[#0EA5E9] transition-colors">باقات الاشتراك</a></li>
+          <li><a href="faq.html" data-i18n="nav_faq" class="hover:text-[#0EA5E9] transition-colors">الأسئلة الشائعة مركز
+              الدعم</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-4 space-y-4">
+        <h4 data-i18n="footer_support_header"
+          class="text-xs font-extrabold uppercase text-theme-primary tracking-wider">الدعم الفني المباشر</h4>
+        <p data-i18n="footer_support_desc" class="text-xs text-theme-secondary leading-relaxed">
+          تواصل معنا مباشرة للحصول على الاستفسارات والتفعيل الفوري للاشتراك عبر منصة الواتساب:
+        </p>
+        <button onclick="openWhatsAppTrial()"
+          class="liquid-glass rounded-full w-full py-3.5 px-5 text-emerald-400 hover:text-emerald-300 font-bold text-sm transition-all flex items-center justify-center gap-3">
+          <i class="fa-brands fa-whatsapp text-2xl"></i> <span data-i18n="footer_whatsapp_btn">محادثة دقيقة وفورية عبر
+            الواتساب</span>
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-theme-secondary gap-4 font-semibold">
+      <p data-i18n="footer_copyright">© 2026 Quick & Quality Streaming. جميع الحقوق محفوظة.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
