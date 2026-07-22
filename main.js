@@ -74,7 +74,7 @@ const translations = {
     sub_title_badge: "باقاتنا المميزة",
     sub_heading: "اختر باقة الترفيه المناسبة لك",
     sub_desc: "أسعار مرنة تناسب احتياجاتك الترفيهية مع دعم كامل لجودة 4K والتفعيل الفوري.",
-    
+
     period_monthly: "شهري",
     period_quarterly: "3 أشهر",
     period_semiannual: "6 أشهر",
@@ -199,7 +199,7 @@ const translations = {
     sub_title_badge: "Premium Packages",
     sub_heading: "Choose Your Entertainment Plan",
     sub_desc: "Flexible pricing tailored to your needs with full 4K support and instant activation.",
-    
+
     period_monthly: "Monthly",
     period_quarterly: "3 Months",
     period_semiannual: "6 Months",
@@ -335,22 +335,22 @@ function toggleTheme() {
 function orderViaWhatsApp(planKey, price, duration, features) {
   const isAr = currentLang === 'ar';
   const planTitle = translations[currentLang][planKey] || planKey;
-  
+
   let message = "";
   if (isAr) {
     message = `مرحباً، أود الاشتراك في باقة Quick & Quality:\n\n` +
-              `📌 *الباقة:* ${planTitle}\n` +
-              `⏱️ *المدة:* ${duration}\n` +
-              `💰 *السعر:* ${price}\n` +
-              `⭐ *المميزات:* ${features}\n\n` +
-              `الرجاء تزويدي بالتفاصيل وطرق الدفع لتفعيل الخدمة فوراً. شكراً لكم!`;
+      `📌 *الباقة:* ${planTitle}\n` +
+      `⏱️ *المدة:* ${duration}\n` +
+      `💰 *السعر:* ${price}\n` +
+      `⭐ *المميزات:* ${features}\n\n` +
+      `الرجاء تزويدي بالتفاصيل وطرق الدفع لتفعيل الخدمة فوراً. شكراً لكم!`;
   } else {
     message = `Hi! I would like to subscribe to Quick & Quality:\n\n` +
-              `📌 *Plan:* ${planTitle}\n` +
-              `⏱️ *Duration:* ${duration}\n` +
-              `💰 *Price:* ${price}\n` +
-              `⭐ *Features:* ${features}\n\n` +
-              `Please provide payment details for instant activation. Thank you!`;
+      `📌 *Plan:* ${planTitle}\n` +
+      `⏱️ *Duration:* ${duration}\n` +
+      `💰 *Price:* ${price}\n` +
+      `⭐ *Features:* ${features}\n\n` +
+      `Please provide payment details for instant activation. Thank you!`;
   }
 
   const encoded = encodeURIComponent(message);
@@ -360,8 +360,8 @@ function orderViaWhatsApp(planKey, price, duration, features) {
 
 function openWhatsAppTrial(reason = "Trial Request") {
   const isAr = currentLang === 'ar';
-  const text = isAr 
-    ? `مرحباً فريق Quick & Quality، أود طلب تجربة مجانية واختبار سرعة وثبات البث.` 
+  const text = isAr
+    ? `مرحباً فريق Quick & Quality، أود طلب تجربة مجانية واختبار سرعة وثبات البث.`
     : `Hello Quick & Quality team, I would like to request a free trial to test the streaming speed and quality.`;
 
   const encoded = encodeURIComponent(text);
@@ -519,3 +519,28 @@ function initSubscriptions() {
     });
   }
 }
+document.addEventListener("DOMContentLoaded", () => {
+
+  const plans = document.querySelectorAll(".plan-card");
+
+  plans.forEach(plan => {
+
+    plan.addEventListener("click", () => {
+
+      // إزالة الحركة من كل البطاقات
+      plans.forEach(card => {
+        card.classList.remove("plan-selected");
+        card.classList.add("plan-card-reset");
+      });
+
+
+      // إضافة الحركة للكرت المختار
+      plan.classList.remove("plan-card-reset");
+      plan.classList.add("plan-selected");
+
+
+    });
+
+  });
+
+});
