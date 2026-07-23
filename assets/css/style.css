@@ -463,3 +463,127 @@ html[dir="ltr"] #mobile-drawer.hidden-drawer {
 .animate-shine {
   animation: shine 3s infinite ease-in-out;
 }
+
+/* ==========================================================================
+   GLASS FILTER SYSTEM & HIGH-END INTERACTIVE ANIMATIONS
+   ========================================================================== */
+
+/* 1. حماية شاملة من خلفية التركيز البيضاء والـ Tap Highlight على الموبايل */
+.faq-filter-container,
+.faq-filter-container *,
+.faq-cat-btn,
+.faq-cat-btn:focus,
+.faq-cat-btn:active,
+.faq-cat-btn:visited,
+.faq-cat-btn:focus-visible {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* 2. تثبيت خلفية الحاوية الخارجية الزجاجية أثناء جميع الحالات (Focus/Active) */
+html[data-theme="dark"] .faq-filter-container,
+body.dark .faq-filter-container,
+html[data-theme="dark"] .faq-filter-container:focus-within {
+  background: rgba(15, 23, 42, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37) !important;
+}
+
+/* 3. إعدادات الحركة والأنيميشن التفاعلي للأزرار */
+.faq-cat-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.3s ease,
+              color 0.3s ease,
+              box-shadow 0.4s ease !important;
+  will-change: transform, box-shadow;
+}
+
+/* تأثير لمعة الضوء (Shimmer Effect) عند التمرير over */
+.faq-cat-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.25),
+    transparent
+  );
+  transition: left 0.6s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.faq-cat-btn:hover::before {
+  left: 100%;
+}
+
+/* 4. الأزرار غير النشطة - إجبار الخلفية على التلاشي التام والشفافية */
+html[data-theme="dark"] .faq-cat-btn:not(.active),
+html[data-theme="dark"] .faq-cat-btn:not(.active):focus,
+html[data-theme="dark"] .faq-cat-btn:not(.active):active {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #94a3b8 !important;
+}
+
+/* عند مرور الماوس على الزر غير النشط */
+html[data-theme="dark"] .faq-cat-btn:not(.active):hover {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.03) !important;
+}
+
+/* 5. الزر النشط (Active) - متدرج أزرق مع نبض زجاجي وهج */
+html[data-theme="dark"] .faq-cat-btn.active,
+html[data-theme="dark"] .faq-cat-btn.active:focus,
+html[data-theme="dark"] .faq-cat-btn.active:active {
+  background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%) !important;
+  color: #ffffff !important;
+  transform: scale(1.05) !important;
+  animation: liquidGlowPulse 3s infinite ease-in-out;
+}
+
+/* أنيميشن وهج النبض للزر المحدد */
+@keyframes liquidGlowPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.4), 0 4px 12px rgba(2, 132, 199, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(14, 165, 233, 0.8), 0 6px 20px rgba(2, 132, 199, 0.4);
+  }
+}
+
+/* 6. استجابة الضغط (Tactile Feedback) */
+.faq-cat-btn:active {
+  transform: scale(0.94) !important;
+  transition-duration: 0.1s !important;
+}
+
+/* 7. دعم الوضع الفاتح (Light Mode) */
+html[data-theme="light"] .faq-filter-container,
+html[data-theme="light"] .faq-filter-container:focus-within {
+  background: rgba(241, 245, 249, 0.8) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+html[data-theme="light"] .faq-cat-btn:not(.active) {
+  background: transparent !important;
+  color: #64748b !important;
+}
+
+html[data-theme="light"] .faq-cat-btn.active {
+  background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%) !important;
+  color: #ffffff !important;
+  transform: scale(1.04) !important;
+  box-shadow: 0 4px 18px rgba(14, 165, 233, 0.35) !important;
+}
