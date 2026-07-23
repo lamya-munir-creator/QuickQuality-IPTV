@@ -12,7 +12,7 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <!-- Custom CSS Link -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="min-h-screen antialiased selection:bg-[#0EA5E9] selection:text-white">
@@ -20,66 +20,7 @@
   <!-- ==========================================
       1. HEADER & NAVBAR CONTAINER
      ========================================== -->
-  <header class="sticky top-4 z-50 px-4 sm:px-6 max-w-7xl mx-auto">
-    <nav class="liquid-glass rounded-full px-4 sm:px-6 py-3 flex items-center justify-between gap-3 shadow-2xl">
-      <!-- Brand Logo -->
-      <a href="index.html" class="flex items-center gap-3 group shrink-0">
-        <div
-          class="liquid-glass rounded-full w-10 h-10 sm:w-11 sm:h-11 p-2 flex items-center justify-center group-hover:scale-105 transition-transform">
-          <img src="logo.svg" alt="Quick & Quality Logo" class="w-7 h-7 sm:w-8 sm:h-8 object-contain" />
-        </div>
-        <div class="hidden sm:block">
-          <span data-i18n="brand_title"
-            class="text-base sm:text-lg font-extrabold tracking-tight text-theme-primary block leading-none">Quick &
-            Quality</span>
-          <span data-i18n="brand_tagline"
-            class="logo-tagline text-[11px] sm:text-xs text-[#0EA5E9] font-bold mt-0.5 block">go quick .. keep
-            quality</span>
-        </div>
-      </a>
-
-      <!-- Desktop Nav Links (Visible ONLY >= 1024px: hidden lg:flex) -->
-      <div class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-semibold">
-        <a href="index.html" data-i18n="nav_home" class="nav-link">الرئيسية</a>
-        <a href="about.html" data-i18n="nav_about" class="nav-link">لماذا نحن</a>
-        <a href="subscriptions.html" data-i18n="nav_subscriptions" class="nav-link active text-[#0EA5E9]">الاشتراكات</a>
-        <a href="faq.html" data-i18n="nav_faq" class="nav-link">الأسئلة الشائعة</a>
-      </div>
-
-      <!-- Action Buttons & Controls (Right side group) -->
-      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-        <!-- Desktop CTA Buttons (Visible ONLY >= 1024px: hidden lg:flex) -->
-        <div class="hidden lg:flex items-center gap-2">
-          <a href="subscriptions.html" data-i18n="btn_view_plans"
-            class="liquid-glass-strong rounded-full px-4 py-2 text-white font-bold text-xs sm:text-sm shadow-md bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/30">
-            عرض الاشتراكات
-          </a>
-          <button onclick="openWhatsAppTrial()"
-            class="liquid-glass rounded-full px-3.5 py-2 text-emerald-400 font-bold text-xs sm:text-sm flex items-center gap-1.5">
-            <i class="fa-brands fa-whatsapp text-base"></i> <span data-i18n="btn_free_trial">تجربة مجانية</span>
-          </button>
-        </div>
-
-        <!-- Language Button (Inside navbar, visible on Desktop, Tablet & Mobile) -->
-        <button id="language-toggle" onclick="toggleLanguage()" title="Switch Language" aria-label="Change language"
-          class="liquid-glass rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-theme-primary hover:scale-105 transition-transform shrink-0">
-          <i class="fa-solid fa-globe text-sm sm:text-base"></i>
-        </button>
-
-        <!-- Theme Toggle (Inside navbar, visible on Desktop, Tablet & Mobile) -->
-        <button id="theme-toggle" onclick="toggleTheme()" title="Toggle Theme" aria-label="Toggle dark mode"
-          class="liquid-glass rounded-full w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-theme-primary hover:scale-105 transition-transform shrink-0">
-          <i id="theme-icon" class="fa-solid fa-moon text-sm sm:text-base"></i>
-        </button>
-
-        <!-- Mobile Menu Button (Visible ONLY < 1024px: flex lg:hidden) -->
-        <button id="mobile-menu-btn" aria-label="Open menu"
-          class="flex lg:hidden liquid-glass rounded-full w-9 h-9 sm:w-10 sm:h-10 items-center justify-center text-theme-primary shrink-0">
-          <i class="fa-solid fa-bars-staggered text-base sm:text-lg"></i>
-        </button>
-      </div>
-    </nav>
-  </header>
+  <div id="header"></div>
 
   <!-- Mobile Drawer -->
   <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden-drawer flex justify-start">
@@ -312,7 +253,8 @@
       <div data-category="sports" class="channel-item p-4 rounded-2xl liquid-glass flex items-center gap-3">
         <div
           class="w-10 h-10 rounded-xl liquid-glass-strong text-[#0EA5E9] flex items-center justify-center font-bold text-lg">
-          <i class="fa-solid fa-trophy"></i></div>
+          <i class="fa-solid fa-trophy"></i>
+        </div>
         <div>
           <h4 class="font-extrabold text-xs text-theme-primary">beIN Sports 4K</h4>
           <span class="text-[10px] text-emerald-400 font-bold">Ultra HD Live</span>
@@ -322,7 +264,8 @@
       <div data-category="sports" class="channel-item p-4 rounded-2xl liquid-glass flex items-center gap-3">
         <div
           class="w-10 h-10 rounded-xl liquid-glass-strong text-[#0EA5E9] flex items-center justify-center font-bold text-lg">
-          <i class="fa-solid fa-football"></i></div>
+          <i class="fa-solid fa-football"></i>
+        </div>
         <div>
           <h4 class="font-extrabold text-xs text-theme-primary">SSC Sports HD</h4>
           <span class="text-[10px] text-emerald-400 font-bold">Full HD Live</span>
@@ -332,7 +275,8 @@
       <div data-category="cinema" class="channel-item p-4 rounded-2xl liquid-glass flex items-center gap-3">
         <div
           class="w-10 h-10 rounded-xl liquid-glass-strong text-purple-400 flex items-center justify-center font-bold text-lg">
-          <i class="fa-solid fa-film"></i></div>
+          <i class="fa-solid fa-film"></i>
+        </div>
         <div>
           <h4 class="font-extrabold text-xs text-theme-primary">OSN Cinema VIP</h4>
           <span class="text-[10px] text-purple-400 font-bold">4K VOD</span>
@@ -342,7 +286,8 @@
       <div data-category="cinema" class="channel-item p-4 rounded-2xl liquid-glass flex items-center gap-3">
         <div
           class="w-10 h-10 rounded-xl liquid-glass-strong text-purple-400 flex items-center justify-center font-bold text-lg">
-          <i class="fa-solid fa-clapperboard"></i></div>
+          <i class="fa-solid fa-clapperboard"></i>
+        </div>
         <div>
           <h4 class="font-extrabold text-xs text-theme-primary">Netflix Series VOD</h4>
           <span class="text-[10px] text-purple-400 font-bold">Daily Updated</span>
@@ -407,7 +352,8 @@
     </div>
   </footer>
 
-  <script src="main.js"></script>
+  <script src="assets/js/loader.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

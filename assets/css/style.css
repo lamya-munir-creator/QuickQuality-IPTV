@@ -133,7 +133,9 @@ html[dir="ltr"] body {
   mask-composite: exclude;
   pointer-events: none;
 }
-
+body{
+    padding-top:110px;
+}
 /* Framer Motion Interaction System for Glass Elements */
 button.liquid-glass,
 button.liquid-glass-strong,
@@ -328,11 +330,20 @@ html[dir="rtl"] .floating-utility-controls {
 }
 
 /* Mobile Drawer Overlay */
+#mobile-menu-btn {
+  display: none;
+}
+
 #mobile-drawer {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(100%);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 #mobile-drawer.hidden-drawer {
+  display: none;
   opacity: 0;
   pointer-events: none;
   transform: translateX(100%);
@@ -343,9 +354,30 @@ html[dir="ltr"] #mobile-drawer.hidden-drawer {
 }
 
 #mobile-drawer.visible-drawer {
+  display: flex;
   opacity: 1;
   pointer-events: auto;
   transform: translateX(0);
+}
+
+@media (max-width: 1023px) {
+  #mobile-menu-btn {
+    display: flex;
+  }
+
+  #mobile-drawer {
+    display: none;
+  }
+
+  #mobile-drawer.visible-drawer {
+    display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  #mobile-drawer {
+    display: none !important;
+  }
 }
 
 /* Subscription Card Selected Animation */
@@ -387,3 +419,5 @@ html[dir="ltr"] #mobile-drawer.hidden-drawer {
   }
 
 }
+
+

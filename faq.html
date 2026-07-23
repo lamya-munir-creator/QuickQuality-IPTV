@@ -12,123 +12,18 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <!-- Custom CSS Link -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body class="min-h-screen antialiased selection:bg-[#0EA5E9] selection:text-white">
 
-  <!-- FLOATING UTILITY CONTROLS -->
-  <div class="floating-utility-controls" id="utility-bar">
-    <button id="utility-lang-btn" onclick="toggleLanguage()" title="Switch Language"
-      class="liquid-glass rounded-full w-[44px] h-[44px] flex items-center justify-center text-current"
-      aria-label="Switch Language">
-      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"></circle>
-        <line x1="2" y1="12" x2="22" y2="12"></line>
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z"></path>
-      </svg>
-    </button>
-    <button id="utility-theme-btn" onclick="toggleTheme()" title="Toggle Theme"
-      class="liquid-glass rounded-full theme-toggle-btn flex items-center justify-center text-current"
-      aria-label="Toggle dark mode">
-      <div id="utility-theme-icon-box" class="theme-icon-box"></div>
-    </button>
-  </div>
 
   <!-- HEADER -->
-  <header class="sticky top-4 z-50 px-4 sm:px-6 max-w-7xl mx-auto">
-    <nav class="liquid-glass rounded-full px-6 py-3.5 flex items-center justify-between shadow-2xl">
+  <div id="header"></div>
 
-      <!-- Brand Logo -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <div
-          class="liquid-glass rounded-full w-11 h-11 p-2 flex items-center justify-center group-hover:scale-105 transition-transform">
-          <img src="logo.svg" alt="Quick & Quality Logo" class="w-8 h-8 object-contain" />
-        </div>
-        <div>
-          <span data-i18n="brand_title"
-            class="text-lg font-extrabold tracking-tight text-theme-primary block leading-none">Quick & Quality</span>
-          <span data-i18n="brand_tagline" class="logo-tagline text-xs text-[#0EA5E9] font-bold mt-0.5 block">go quick ..
-            keep quality</span>
-        </div>
-      </a>
-
-      <!-- Navigation -->
-      <div class="hidden lg:flex items-center gap-8 text-sm font-semibold">
-        <a href="index.html" data-i18n="nav_home" class="nav-link">الرئيسية</a>
-        <a href="about.html" data-i18n="nav_about" class="nav-link">لماذا نحن</a>
-        <a href="subscriptions.html" data-i18n="nav_subscriptions" class="nav-link">الاشتراكات</a>
-        <a href="faq.html" data-i18n="nav_faq" class="nav-link active text-[#0EA5E9]">الأسئلة الشائعة</a>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="hidden sm:flex items-center gap-3">
-        <button onclick="openWhatsAppTrial()"
-          class="liquid-glass rounded-full px-4 py-2.5 text-emerald-400 font-bold text-sm flex items-center gap-2">
-          <i class="fa-brands fa-whatsapp text-lg"></i> <span data-i18n="btn_free_trial">تجربة مجانية</span>
-        </button>
-      </div>
-
-      <!-- Mobile Hamburger -->
-      <button id="mobile-menu-btn" aria-label="Open menu"
-        class="flex lg:hidden items-center justify-center liquid-glass rounded-full w-10 h-10 shrink-0">
-        <i class="fa-solid fa-bars-staggered text-xl"></i>
-      </button>
-    </nav>
-  </header>
 
   <!-- Mobile Drawer -->
-  <div id="mobile-drawer" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden-drawer flex justify-start">
-    <div class="w-4/5 max-w-sm liquid-glass h-full p-6 flex flex-col justify-between overflow-y-auto">
-      <div>
-        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-          <div class="flex items-center gap-3">
-            <div class="liquid-glass rounded-full w-10 h-10 p-2 flex items-center justify-center">
-              <img src="logo.svg" alt="Quick & Quality Logo" class="w-7 h-7 object-contain" />
-            </div>
-            <div>
-              <span data-i18n="brand_title" class="font-bold text-theme-primary block leading-tight">Quick &
-                Quality</span>
-              <span data-i18n="brand_tagline" class="logo-tagline text-[11px] text-[#0EA5E9] font-bold">go quick .. keep
-                quality</span>
-            </div>
-          </div>
-          <button id="close-drawer-btn"
-            class="liquid-glass rounded-full w-9 h-9 flex items-center justify-center text-theme-secondary text-lg">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
 
-        <nav class="flex flex-col gap-3 font-bold text-theme-primary">
-          <a href="index.html" class="liquid-glass px-4 py-3 rounded-xl flex items-center justify-between">
-            <span data-i18n="nav_home">الرئيسية</span>
-            <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
-          </a>
-          <a href="about.html" class="liquid-glass px-4 py-3 rounded-xl flex items-center justify-between">
-            <span data-i18n="nav_about">لماذا نحن</span>
-            <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
-          </a>
-          <a href="subscriptions.html" class="liquid-glass px-4 py-3 rounded-xl flex items-center justify-between">
-            <span data-i18n="nav_subscriptions">الاشتراكات</span>
-            <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
-          </a>
-          <a href="faq.html" class="liquid-glass px-4 py-3 rounded-xl text-[#0EA5E9] flex items-center justify-between">
-            <span data-i18n="nav_faq">الأسئلة الشائعة</span>
-            <i class="fa-solid fa-chevron-left text-xs opacity-50"></i>
-          </a>
-        </nav>
-      </div>
-
-      <div class="pt-6 border-t border-white/10 space-y-3">
-        <button onclick="openWhatsAppTrial()"
-          class="liquid-glass rounded-full w-full py-3 text-emerald-400 font-bold flex items-center justify-center gap-2">
-          <i class="fa-brands fa-whatsapp text-xl"></i> <span data-i18n="btn_free_trial">تجربة مجانية عبر
-            الواتساب</span>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- FAQ SECTION -->
   <section class="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
@@ -249,62 +144,11 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="liquid-glass pt-16 pb-10 rounded-t-[40px] border-t border-white/10">
-    <div
-      class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
-      <div class="lg:col-span-5 space-y-4">
-        <div class="flex items-center gap-3">
-          <div class="liquid-glass rounded-full w-10 h-10 p-2 flex items-center justify-center">
-            <img src="logo.svg" alt="Quick & Quality Logo" class="w-7 h-7 object-contain" />
-          </div>
-          <div>
-            <span data-i18n="brand_title"
-              class="text-xl font-extrabold tracking-tight text-theme-primary block leading-none">Quick & Quality</span>
-            <span data-i18n="brand_tagline" class="logo-tagline text-xs text-[#0EA5E9] font-bold mt-0.5 block">go quick
-              .. keep quality</span>
-          </div>
-        </div>
-        <p data-i18n="footer_brief" class="text-theme-secondary text-xs sm:text-sm leading-relaxed max-w-md">
-          جاهز لبدء أفضل تجربة بث سينمائي ورياضي؟ نوفر لك أعلى مستويات الجودة والثبات مع تفعيل فوري ودعم متواصل عبر
-          الواتساب على مدار الساعة.
-        </p>
-      </div>
+  <div id="footer"></div>
 
-      <div class="lg:col-span-3 space-y-3">
-        <h4 data-i18n="footer_nav_header" class="text-xs font-extrabold uppercase text-theme-primary tracking-wider">
-          روابط الموقع</h4>
-        <ul class="space-y-2.5 text-sm text-theme-secondary font-semibold">
-          <li><a href="index.html" data-i18n="nav_home" class="hover:text-[#0EA5E9] transition-colors">الرئيسية</a></li>
-          <li><a href="about.html" data-i18n="nav_about" class="hover:text-[#0EA5E9] transition-colors">لماذا نحن</a>
-          </li>
-          <li><a href="subscriptions.html" data-i18n="nav_subscriptions"
-              class="hover:text-[#0EA5E9] transition-colors">باقات الاشتراك</a></li>
-          <li><a href="faq.html" data-i18n="nav_faq" class="hover:text-[#0EA5E9] transition-colors">الأسئلة الشائعة مركز
-              الدعم</a></li>
-        </ul>
-      </div>
+  <script src="assets/js/loader.js"></script>
 
-      <div class="lg:col-span-4 space-y-4">
-        <h4 data-i18n="footer_support_header"
-          class="text-xs font-extrabold uppercase text-theme-primary tracking-wider">الدعم الفني المباشر</h4>
-        <p data-i18n="footer_support_desc" class="text-xs text-theme-secondary leading-relaxed">
-          تواصل معنا مباشرة للحصول على الاستفسارات والتفعيل الفوري للاشتراك عبر منصة الواتساب:
-        </p>
-        <button onclick="openWhatsAppTrial()"
-          class="liquid-glass rounded-full w-full py-3.5 px-5 text-emerald-400 hover:text-emerald-300 font-bold text-sm transition-all flex items-center justify-center gap-3">
-          <i class="fa-brands fa-whatsapp text-2xl"></i> <span data-i18n="footer_whatsapp_btn">محادثة دقيقة وفورية عبر
-            الواتساب</span>
-        </button>
-      </div>
-    </div>
-
-    <div
-      class="max-w-7xl mx-auto px-4 sm:px-6 pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-theme-secondary gap-4 font-semibold">
-      <p data-i18n="footer_copyright">© 2026 Quick & Quality Streaming. جميع الحقوق محفوظة.</p>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

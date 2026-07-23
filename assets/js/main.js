@@ -372,44 +372,87 @@ function openWhatsAppTrial(reason = "Trial Request") {
 /**
  * DOM Initialization
  */
+function isMobileViewport() {
+  return window.matchMedia('(max-width: 1023px)').matches;
+}
+
+function openMobileDrawer() {
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  if (!mobileDrawer) return;
+
+  if (window.innerWidth > 1023) return;
+
+  mobileDrawer.style.display = 'flex';
+  mobileDrawer.classList.add('visible-drawer');
+  mobileDrawer.classList.remove('hidden-drawer');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileDrawer() {
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  if (!mobileDrawer) return;
+
+  mobileDrawer.style.display = 'none';
+  mobileDrawer.classList.remove('visible-drawer');
+  mobileDrawer.classList.add('hidden-drawer');
+  document.body.style.overflow = '';
+}
+
+function setActiveNavItem() {
+  const currentPage = window.location.pathname.split('/').pop().replace('.html', '') || 'index';
+  const pageKey = currentPage === 'index' ? 'index' : currentPage;
+
+  document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+    const linkPage = link.getAttribute('data-page');
+    link.classList.remove('active', 'text-[#0EA5E9]', 'bg-[#0EA5E9]/20');
+
+    if (linkPage === pageKey) {
+      link.classList.add('active', 'text-[#0EA5E9]', 'bg-[#0EA5E9]/20');
+    }
+  });
+}
+
+function setupMobileMenu() {
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('close-drawer-btn');
+  const mobileDrawer = document.getElementById('mobile-drawer');
+
+  if (!mobileDrawer) return;
+
+  if (menuBtn) {
+    menuBtn.onclick = function () {
+      openMobileDrawer();
+    };
+  }
+
+  if (closeBtn) {
+    closeBtn.onclick = function () {
+      closeMobileDrawer();
+    };
+  }
+
+  mobileDrawer.onclick = function (e) {
+    if (e.target === mobileDrawer) {
+      closeMobileDrawer();
+    }
+  };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   // Apply saved language & theme preferences
   setLanguage(currentLang);
   setTheme(currentTheme);
 
-  // Mobile Drawer
-  const menuBtn = document.getElementById('mobile-menu-btn');
-  const closeBtn = document.getElementById('close-drawer-btn');
-  const mobileDrawer = document.getElementById('mobile-drawer');
-
-  if (menuBtn && mobileDrawer) {
-    menuBtn.addEventListener('click', () => {
-      mobileDrawer.classList.remove('hidden-drawer');
-      mobileDrawer.classList.add('visible-drawer');
-      document.body.style.overflow = 'hidden';
-    });
-  }
-
-  if (closeBtn && mobileDrawer) {
-    closeBtn.addEventListener('click', () => {
-      mobileDrawer.classList.remove('visible-drawer');
-      mobileDrawer.classList.add('hidden-drawer');
-      document.body.style.overflow = '';
-    });
-  }
-
-  if (mobileDrawer) {
-    mobileDrawer.addEventListener('click', (e) => {
-      if (e.target === mobileDrawer) {
-        mobileDrawer.classList.remove('visible-drawer');
-        mobileDrawer.classList.add('hidden-drawer');
-        document.body.style.overflow = '';
-      }
-    });
-  }
-
+  setActiveNavItem();
+  setupMobileMenu();
   initFAQ();
   initSubscriptions();
+});
+
+window.addEventListener('resize', () => {
+  if (!isMobileViewport()) {
+    closeMobileDrawer();
+  }
 });
 
 /**
@@ -519,28 +562,13 @@ function initSubscriptions() {
     });
   }
 }
-document.addEventListener("DOMContentLoaded", () => {
 
-  const plans = document.querySelectorAll(".plan-card");
+function initPage() {
 
-  plans.forEach(plan => {
+  setLanguage(currentLang);
+  setTheme(currentTheme);
 
-    plan.addEventListener("click", () => {
-
-      // إزالة الحركة من كل البطاقات
-      plans.forEach(card => {
-        card.classList.remove("plan-selected");
-        card.classList.add("plan-card-reset");
-      });
-
-
-      // إضافة الحركة للكرت المختار
-      plan.classList.remove("plan-card-reset");
-      plan.classList.add("plan-selected");
-
-
-    });
-
-  });
-
-});
+  setupMobileMenu();
+  initFAQ();
+  initSubscriptions();
+}
