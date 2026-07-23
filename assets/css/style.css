@@ -562,6 +562,69 @@ html[data-theme="dark"] .faq-cat-btn.active:active {
   }
 }
 
+/* ==========================================
+   LIQUID GLOW PULSE ANIMATION
+   ========================================== */
+/* ==========================================
+   SLO-MO VIVID SHIMMER SYSTEM
+   ========================================== */
+
+/* 1. شعاع الضوء البطيء (Slo-Mo Light Beam) */
+@keyframes sloMoBeam {
+  0% {
+    transform: translateX(-180%) rotate(25deg);
+  }
+  30%, 100% {
+    transform: translateX(180%) rotate(25deg);
+  }
+}
+
+/* 2. أنيميشن النبض والتوهج الحيوى للحدود والخلفية */
+@keyframes vividGlassPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.4), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    border-color: rgba(56, 189, 248, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(14, 165, 233, 0.85), 
+                0 0 12px rgba(255, 255, 255, 0.3) inset,
+                0 4px 20px rgba(2, 132, 199, 0.5);
+    border-color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+/* الكلاس الجديد المطور */
+.slomo-vivid-btn {
+  position: relative;
+  overflow: hidden;
+  /* خلفية زرقاء أعمق ومستقرة لمنع البهتان */
+  background: linear-gradient(135deg, rgba(14, 165, 233, 0.65) 0%, rgba(2, 132, 199, 0.85) 100%) !important;
+  border: 1px solid rgba(125, 211, 252, 0.7) !important;
+  animation: vividGlassPulse 3.5s infinite ease-in-out;
+}
+
+/* طبقة الشعاع الضوئي المائل */
+.slomo-vivid-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 20%,
+    rgba(255, 255, 255, 0.75) 50%,
+    rgba(255, 255, 255, 0.15) 80%,
+    transparent 100%
+  );
+  /* حركة سلو موشن بطيئة وسلسة */
+  animation: sloMoBeam 4.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
 /* 6. استجابة الضغط (Tactile Feedback) */
 .faq-cat-btn:active {
   transform: scale(0.94) !important;
