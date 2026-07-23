@@ -38,6 +38,16 @@ html {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+html.is-loading,
+html.is-loading body {
+  visibility: hidden !important;
+}
+
+html.is-ready,
+html.is-ready body {
+  visibility: visible !important;
+}
+
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
@@ -135,6 +145,20 @@ html[dir="ltr"] body {
 }
 body{
     padding-top:110px;
+}
+
+#header {
+  min-height: 84px;
+  display: block;
+}
+
+#header > * {
+  will-change: transform;
+}
+
+#footer {
+  min-height: 220px;
+  display: block;
 }
 /* Framer Motion Interaction System for Glass Elements */
 button.liquid-glass,

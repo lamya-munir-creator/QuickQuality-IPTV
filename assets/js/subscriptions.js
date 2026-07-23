@@ -184,7 +184,7 @@ document.addEventListener('click', (e) => {
 // ================= ================= =================
 // 2. منطق الصفحة والربط
 // ================= ================= =================
-document.addEventListener('DOMContentLoaded', async () => {
+async function initSubscriptionsPage() {
   const container = document.querySelector('[data-subscriptions-root]');
   const list = document.querySelector('[data-subscriptions-list]');
   const summary = document.querySelector('[data-subscriptions-summary]');
@@ -229,44 +229,36 @@ document.addEventListener('DOMContentLoaded', async () => {
     const grid = document.createElement('div');
     grid.className = 'grid gap-6 lg:grid-cols-2 xl:grid-cols-3';
 
-pagePlans.forEach(plan => {
-  // 1. تجهيز الكائن واستنساخه لتجنب التعديل المباشر على البيانات الأصلية
-  const translatedPlan = { ...plan };
+    pagePlans.forEach(plan => {
+      const translatedPlan = { ...plan };
 
-  if (typeof t === 'function') {
-    // 2. ترجمة التفعيل الفوري
-    if (translatedPlan.instant_activation || translatedPlan.badge || translatedPlan.instant) {
-      translatedPlan.instant_activation_text = t('instant_activation', '⚡ Instant Activation');
-    }
+      if (typeof t === 'function') {
+        if (translatedPlan.instant_activation || translatedPlan.badge || translatedPlan.instant) {
+          translatedPlan.instant_activation_text = t('instant_activation', '⚡ Instant Activation');
+        }
 
-    // 3. مطابقة مفتاح المدة الزمنيّة بالاعتماد على القيم المسجلة لديكِ
-    // يختبر المفاتيح المختصرة (duration_3) والمفاتيح الطويلة (duration_3_months)
-    const rawDuration = String(plan.duration || plan.duration_key || plan.plan_duration || '').toLowerCase();
+        const rawDuration = String(plan.duration || plan.duration_key || plan.plan_duration || '').toLowerCase();
 
-    let durationKey = '';
-    if (rawDuration.includes('24') || rawDuration.includes('2_year')) durationKey = '24';
-    else if (rawDuration.includes('12') || rawDuration.includes('1_year')) durationKey = '12';
-    else if (rawDuration.includes('6')) durationKey = '6';
-    else if (rawDuration.includes('3')) durationKey = '3';
-    else if (rawDuration.includes('1')) durationKey = '1_month';
+        let durationKey = '';
+        if (rawDuration.includes('24') || rawDuration.includes('2_year')) durationKey = '24';
+        else if (rawDuration.includes('12') || rawDuration.includes('1_year')) durationKey = '12';
+        else if (rawDuration.includes('6')) durationKey = '6';
+        else if (rawDuration.includes('3')) durationKey = '3';
+        else if (rawDuration.includes('1')) durationKey = '1_month';
 
-    if (durationKey) {
-      // يجرب المفتاح المختصر أولاً (duration_3)، وإذا لم يجده يجرب الطويل (duration_3_months)
-      const fallbackText = plan.duration_label || plan.duration;
-      translatedPlan.duration_translated = t(
-        `duration_${durationKey}`, 
-        t(`duration_${durationKey}_months`, fallbackText)
-      );
-      
-      // لتغطية أي مسمى متغير داخل دالة createPlanCard
-      translatedPlan.duration_label = translatedPlan.duration_translated;
-      translatedPlan.duration = translatedPlan.duration_translated;
-    }
-  }
+        if (durationKey) {
+          const fallbackText = plan.duration_label || plan.duration;
+          translatedPlan.duration_translated = t(
+            `duration_${durationKey}`, 
+            t(`duration_${durationKey}_months`, fallbackText)
+          );
+          translatedPlan.duration_label = translatedPlan.duration_translated;
+          translatedPlan.duration = translatedPlan.duration_translated;
+        }
+      }
 
-  // تمرير الكائن المُترجم لدالة إنشاء الكارت
-  grid.appendChild(createPlanCard(translatedPlan));
-});
+      grid.appendChild(createPlanCard(translatedPlan));
+    });
     list.appendChild(grid);
 
     if (filteredPlans.length > end) {
@@ -283,7 +275,7 @@ pagePlans.forEach(plan => {
           <span class="absolute inset-0 -z-10 bg-sky-500/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"></span>
           <span class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-full"></span>
           <span class="relative z-10 flex items-center gap-3 tracking-wide">
-            <span>${t('subscriptions_load_more', 'عرض المزيد')}</span>
+            <span>${typeof t === 'function' ? t('subscriptions_load_more', 'عرض المزيد') : 'عرض المزيد'}</span>
             <i class="fa-solid fa-chevron-down text-sky-400 transition-transform duration-300 ease-in-out group-hover:translate-y-1.5 group-hover:text-sky-200"></i>
           </span>
         </button>
@@ -357,6 +349,12 @@ pagePlans.forEach(plan => {
   };
 
   window.refreshSubscriptionsView = loadSubscriptions;
-  loadSubscriptions();
+  await loadSubscriptions();
+}
+
+window.initSubscriptionsPage = initSubscriptionsPage;
+
+document.addEventListener('DOMContentLoaded', () => {
+  initSubscriptionsPage();
 });
 

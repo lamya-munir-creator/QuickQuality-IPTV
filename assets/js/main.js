@@ -584,6 +584,11 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMobileMenu();
   initFAQ();
   initSubscriptions();
+
+  requestAnimationFrame(() => {
+    document.documentElement.classList.remove('is-loading');
+    document.documentElement.classList.add('is-ready');
+  });
 });
 
 window.addEventListener('resize', () => {
@@ -596,46 +601,72 @@ window.addEventListener('resize', () => {
  * FAQ Handlers
  */
 function initFAQ() {
+  const faqBtns = document.querySelectorAll('.faq-btn');
+  const catBtns = document.querySelectorAll('.faq-cat-btn');
   const faqItems = document.querySelectorAll('.faq-item');
   const searchInput = document.getElementById('faq-search');
-  const categoryTabs = document.querySelectorAll('.faq-cat-btn');
 
-  faqItems.forEach(item => {
-    const btn = item.querySelector('.faq-btn');
-    if (btn) {
-      btn.addEventListener('click', () => {
-        const isOpen = item.classList.contains('open');
-        faqItems.forEach(otherItem => otherItem.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
-      });
-    }
+  if (faqItems.length === 0) return;
+
+  faqBtns.forEach(btn => {
+    btn.onclick = () => {
+      const item = btn.closest('.faq-item');
+      if (!item) return;
+      const wrapper = item.querySelector('.faq-content-wrapper');
+      const arrow = item.querySelector('.icon-arrow');
+      const isOpen = wrapper ? wrapper.classList.contains('open') : item.classList.contains('open');
+
+      document.querySelectorAll('.faq-content-wrapper').forEach(w => w.classList.remove('open'));
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      document.querySelectorAll('.icon-arrow').forEach(a => a.style.transform = 'rotate(0deg)');
+
+      if (!isOpen) {
+        if (wrapper) wrapper.classList.add('open');
+        item.classList.add('open');
+        if (arrow) arrow.style.transform = 'rotate(180deg)';
+      }
+    };
   });
 
-  if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-      const term = e.target.value.toLowerCase().trim();
-      faqItems.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        item.style.display = text.includes(term) ? 'block' : 'none';
-      });
+  function filterFAQ(category, query) {
+    faqItems.forEach(item => {
+      const itemCat = item.getAttribute('data-category');
+      const text = item.textContent.toLowerCase();
+
+      const matchesCat = category === 'all' || itemCat === category;
+      const matchesQuery = !query || text.includes(query);
+
+      if (matchesCat && matchesQuery) {
+        item.classList.remove('hide-item');
+        item.classList.add('show-item');
+        item.style.display = '';
+      } else {
+        item.classList.remove('show-item');
+        item.classList.add('hide-item');
+        item.style.display = 'none';
+        const wrapper = item.querySelector('.faq-content-wrapper');
+        if (wrapper) wrapper.classList.remove('open');
+      }
     });
   }
 
-  if (categoryTabs.length > 0) {
-    categoryTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        categoryTabs.forEach(t => t.classList.remove('active', 'bg-[#0EA5E9]', 'text-white'));
-        categoryTabs.forEach(t => t.classList.add('bg-white', 'text-slate-600'));
+  catBtns.forEach(btn => {
+    btn.onclick = () => {
+      catBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-        tab.classList.add('active', 'bg-[#0EA5E9]', 'text-white');
-        tab.classList.remove('bg-white', 'text-slate-600');
+      const category = btn.getAttribute('data-category') || btn.dataset.category;
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      filterFAQ(category, query);
+    };
+  });
 
-        const cat = tab.dataset.category;
-        faqItems.forEach(item => {
-          item.style.display = (cat === 'all' || item.dataset.category === cat) ? 'block' : 'none';
-        });
-      });
-    });
+  if (searchInput) {
+    searchInput.oninput = (e) => {
+      const activeBtn = document.querySelector('.faq-cat-btn.active');
+      const activeCat = activeBtn ? (activeBtn.getAttribute('data-category') || activeBtn.dataset.category || 'all') : 'all';
+      filterFAQ(activeCat, e.target.value.trim().toLowerCase());
+    };
   }
 }
 

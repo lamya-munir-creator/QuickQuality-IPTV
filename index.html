@@ -1,15 +1,37 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" data-theme="dark" class="scroll-smooth">
-
+<html lang="ar" dir="rtl" data-theme="dark" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('qq_theme') || 'dark';
+        const savedLang = localStorage.getItem('language') || localStorage.getItem('qq_lang') || 'ar';
+        const theme = savedTheme === 'light' ? 'light' : 'dark';
+        const lang = savedLang === 'en' ? 'en' : 'ar';
+        const root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        root.setAttribute('lang', lang);
+        root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        root.classList.add('is-loading');
+        root.style.colorScheme = theme;
+      } catch (e) {}
+    })();
+  </script>
   <title>Quick & Quality - Streaming Service</title>
   <meta name="description"
     content="Ultra-fast 4K streaming service without buffering. Access 20,000+ live channels and 50,000+ movies with instant WhatsApp activation." />
   <!-- Tailwind CSS via CDN -->
+     <script src="assets/js/theme.js"></script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome Icons -->
+   <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+    }
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <!-- Custom CSS Link -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -22,239 +44,238 @@
      ========================================== -->
   <div id="header"></div>
 
+  <!-- MAIN DYNAMIC CONTENT CONTAINER -->
+  <main id="app-content">
+    <!-- ==========================================
+        2. HERO SECTION
+       ========================================== -->
+    <section
+      class="py-16 liquid-glass-strong rounded-[40px] max-w-7xl mx-auto px-6 relative overflow-hidden my-12 shadow-2xl">
 
-  <!-- Mobile Drawer Overlay Menu -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
+        <!-- Left Content -->
+        <div class="lg:col-span-7 space-y-6 text-right">
+          <div
+            class="liquid-glass rounded-full inline-flex items-center gap-2 px-4 py-2 text-[#0EA5E9] text-xs font-bold uppercase tracking-wider shadow-sm">
+            <i class="fa-solid fa-bolt text-amber-400"></i> <span data-i18n="hero_badge">بث سريع وفائق الجودة بدون
+              تقطيع</span>
+          </div>
 
-  <!-- ==========================================
-      2. HERO SECTION
-     ========================================== -->
-  <section
-    class="py-16 liquid-glass-strong rounded-[40px] max-w-7xl mx-auto px-6 relative overflow-hidden my-12 shadow-2xl">
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-theme-primary tracking-tight leading-[1.25]">
+            <span data-i18n="hero_title_1">سرعة بث استثنائية مع </span>
+            <span data-i18n="hero_title_highlight"
+              class="text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] to-sky-400">جودة فائقة Ultra HD</span>
+            <span data-i18n="hero_title_2"> ودون انقطاع</span>
+          </h1>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <p data-i18n="hero_desc"
+            class="text-theme-secondary text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+            انضم لأكثر من 15,000 مشترك واستمتع بـ 20,000+ قناة مباشرة و50,000+ من أحدث الأفلام والمسلسلات بجودة 4K/FHD.
+            تفعيل فوري وخوادم فائقة السرعة مع دعم 24/7 عبر الواتساب.
+          </p>
 
-      <!-- Left Content -->
-      <div class="lg:col-span-7 space-y-6 text-right">
-        <div
-          class="liquid-glass rounded-full inline-flex items-center gap-2 px-4 py-2 text-[#0EA5E9] text-xs font-bold uppercase tracking-wider shadow-sm">
-          <i class="fa-solid fa-bolt text-amber-400"></i> <span data-i18n="hero_badge">بث سريع وفائق الجودة بدون
-            تقطيع</span>
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-start gap-4">
+            <a href="subscriptions.html" data-i18n="hero_cta_start"
+              class="liquid-glass-strong rounded-full w-full sm:w-auto px-8 py-4 text-white font-bold text-base shadow-xl flex items-center justify-center gap-3 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/40">
+              اشترك الآن واكتشف الباقات
+            </a>
+            <button onclick="openWhatsAppTrial()"
+              class="liquid-glass rounded-full w-full sm:w-auto px-8 py-4 font-bold text-base shadow-sm hover:text-emerald-400 flex items-center justify-center gap-3">
+              <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i> <span data-i18n="hero_cta_trial">طلب تجربة
+                عبر الواتساب</span>
+            </button>
+          </div>
+
+          <div class="pt-6 flex flex-wrap items-center gap-6 text-theme-secondary text-xs sm:text-sm font-semibold">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span
+                data-i18n="hero_feat_instant">تفعيل فوري 100%</span></div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-sky-400"></i> <span
+                data-i18n="hero_feat_uptime">ضمان ثبات 99.9%</span></div>
+            <div class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-400"></i> <span
+                data-i18n="hero_feat_support">دعم مباشر 24/7</span></div>
+          </div>
         </div>
 
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-theme-primary tracking-tight leading-[1.25]">
-          <span data-i18n="hero_title_1">سرعة بث استثنائية مع </span>
-          <span data-i18n="hero_title_highlight"
-            class="text-transparent bg-clip-text bg-gradient-to-r from-[#0EA5E9] to-sky-400">جودة فائقة Ultra HD</span>
-          <span data-i18n="hero_title_2"> ودون انقطاع</span>
-        </h1>
+        <!-- Right Glass Card Visual -->
+        <div class="lg:col-span-5 relative flex justify-center">
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl -z-10">
+          </div>
 
-        <p data-i18n="hero_desc"
-          class="text-theme-secondary text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
-          انضم لأكثر من 15,000 مشترك واستمتع بـ 20,000+ قناة مباشرة و50,000+ من أحدث الأفلام والمسلسلات بجودة 4K/FHD.
-          تفعيل فوري وخوادم فائقة السرعة مع دعم 24/7 عبر الواتساب.
+          <div class="w-full max-w-md liquid-glass rounded-[32px] p-6 sm:p-8 space-y-6 relative card-hover">
+            <div class="flex items-center gap-4">
+              <div
+                class="w-14 h-14 rounded-2xl liquid-glass-strong flex items-center justify-center text-[#0EA5E9] text-2xl shadow-inner">
+                <i class="fa-solid fa-circle-play"></i>
+              </div>
+              <div>
+                <h3 data-i18n="card_activation_title" class="font-extrabold text-theme-primary text-lg">تفعيل فوري وتلقائي
+                </h3>
+                <p data-i18n="card_activation_desc" class="text-xs text-theme-secondary font-medium mt-0.5">تسليم بيانات
+                  الاشتراك فور إتمام الطلب عبر الواتساب</p>
+              </div>
+            </div>
+
+            <blockquote data-i18n="card_quote"
+              class="text-sm text-theme-secondary italic border-r-4 border-[#0EA5E9] pr-4 py-2 leading-relaxed liquid-glass rounded-xl">
+              "شاهد المباريات العالمية بجودة 4K حقيقية بدون تأخير، واستمتع بمكتبة سينمائية متجددة يومياً على كافة أجهزتك."
+            </blockquote>
+
+            <div class="space-y-3 pt-2">
+              <div class="flex items-center justify-between text-xs liquid-glass p-3.5 rounded-xl">
+                <span data-i18n="card_devices_label" class="font-semibold text-theme-secondary">الأجهزة المدعومة</span>
+                <span class="font-bold text-[#0EA5E9]">Smart TV, Android, Apple, FireStick</span>
+              </div>
+              <div class="flex items-center justify-between text-xs liquid-glass p-3.5 rounded-xl">
+                <span data-i18n="card_support_label" class="font-semibold text-theme-secondary">خدمة العملاء</span>
+                <span data-i18n="card_support_val" class="font-bold text-emerald-400">واتساب مباشر 24/7</span>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-theme-secondary">
+              <span data-i18n="card_guarantee" class="flex items-center gap-1.5 font-bold"><i
+                  class="fa-solid fa-shield-halved text-emerald-400"></i> خوادم حماية وموازنة الحمل</span>
+              <span data-i18n="brand_title" class="font-extrabold text-[#0EA5E9]">Quick & Quality</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+        3. DETACHED FEATURE BADGES STRIP
+       ========================================== -->
+    <section class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 mb-16">
+      <div class="liquid-glass rounded-2xl p-4 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <!-- Badge 1 -->
+        <div class="flex items-center gap-4 p-4 rounded-xl liquid-glass">
+          <div class="p-3.5 rounded-xl liquid-glass-strong text-[#0EA5E9] text-xl">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div>
+            <h4 data-i18n="badge_1_title" class="font-extrabold text-sm text-theme-primary">ضمان عدم التقطيع</h4>
+            <p data-i18n="badge_1_desc" class="text-xs text-theme-secondary font-medium">سيرفرات فائقة السرعة وموزعة
+              عالمياً</p>
+          </div>
+        </div>
+
+        <!-- Badge 2 -->
+        <div class="flex items-center gap-4 p-4 rounded-xl liquid-glass">
+          <div class="p-3.5 rounded-xl liquid-glass-strong text-emerald-400 text-xl">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <div>
+            <h4 data-i18n="badge_2_title" class="font-extrabold text-sm text-theme-primary">دعم فني 24/7 عبر الواتساب</h4>
+            <p data-i18n="badge_2_desc" class="text-xs text-theme-secondary font-medium">مساعدة فورية وإرشادات خطوة بخطوة
+            </p>
+          </div>
+        </div>
+
+        <!-- Badge 3 -->
+        <div class="flex items-center gap-4 p-4 rounded-xl liquid-glass">
+          <div class="p-3.5 rounded-xl liquid-glass-strong text-[#0EA5E9] text-xl">
+            <i class="fa-solid fa-arrows-rotate"></i>
+          </div>
+          <div>
+            <h4 data-i18n="badge_3_title" class="font-extrabold text-sm text-theme-primary">تحديثات سينمائية يومية</h4>
+            <p data-i18n="badge_3_desc" class="text-xs text-theme-secondary font-medium">إضافة أحدث الأفلام والمسلسلات
+              حصرياً</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================
+        4. WHY CHOOSE US HIGHLIGHTS
+       ========================================== -->
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center space-y-3 mb-14">
+        <span data-i18n="why_title_badge"
+          class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 inline-block">تميز
+          معنا</span>
+        <h2 data-i18n="why_heading" class="text-3xl sm:text-4xl font-black text-theme-primary">لماذا تختار Quick &
+          Quality؟</h2>
+        <p data-i18n="why_desc" class="text-theme-secondary max-w-2xl mx-auto text-sm leading-relaxed">
+          نستخدم أحدث تقنيات البث الشبكي لتوفير تجربة مشاهدة سينمائية مستقرة بدون أي تقطيع حتى في أوقات ذروة المباريات
+          الكبرى.
         </p>
-
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-start gap-4">
-          <a href="subscriptions.html" data-i18n="hero_cta_start"
-            class="liquid-glass-strong rounded-full w-full sm:w-auto px-8 py-4 text-white font-bold text-base shadow-xl flex items-center justify-center gap-3 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/40">
-            اشترك الآن واكتشف الباقات
-          </a>
-          <button onclick="openWhatsAppTrial()"
-            class="liquid-glass rounded-full w-full sm:w-auto px-8 py-4 font-bold text-base shadow-sm hover:text-emerald-400 flex items-center justify-center gap-3">
-            <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i> <span data-i18n="hero_cta_trial">طلب تجربة
-              عبر الواتساب</span>
-          </button>
-        </div>
-
-        <div class="pt-6 flex flex-wrap items-center gap-6 text-theme-secondary text-xs sm:text-sm font-semibold">
-          <div class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span
-              data-i18n="hero_feat_instant">تفعيل فوري 100%</span></div>
-          <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-sky-400"></i> <span
-              data-i18n="hero_feat_uptime">ضمان ثبات 99.9%</span></div>
-          <div class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-400"></i> <span
-              data-i18n="hero_feat_support">دعم مباشر 24/7</span></div>
-        </div>
       </div>
 
-      <!-- Right Glass Card Visual -->
-      <div class="lg:col-span-5 relative flex justify-center">
-        <div
-          class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-sky-500/10 rounded-full blur-3xl -z-10">
-        </div>
-
-        <div class="w-full max-w-md liquid-glass rounded-[32px] p-6 sm:p-8 space-y-6 relative card-hover">
-          <div class="flex items-center gap-4">
-            <div
-              class="w-14 h-14 rounded-2xl liquid-glass-strong flex items-center justify-center text-[#0EA5E9] text-2xl shadow-inner">
-              <i class="fa-solid fa-circle-play"></i>
-            </div>
-            <div>
-              <h3 data-i18n="card_activation_title" class="font-extrabold text-theme-primary text-lg">تفعيل فوري وتلقائي
-              </h3>
-              <p data-i18n="card_activation_desc" class="text-xs text-theme-secondary font-medium mt-0.5">تسليم بيانات
-                الاشتراك فور إتمام الطلب عبر الواتساب</p>
-            </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="liquid-glass p-8 rounded-[24px] card-hover">
+          <div
+            class="w-14 h-14 rounded-2xl liquid-glass-strong text-[#0EA5E9] flex items-center justify-center text-2xl mb-6 shadow-sm">
+            <i class="fa-solid fa-tv"></i>
           </div>
+          <h3 data-i18n="why_card1_title" class="text-xl font-extrabold text-theme-primary mb-3">توافق شامل مع جميع
+            الأجهزة</h3>
+          <p data-i18n="why_card1_desc" class="text-theme-secondary text-sm leading-relaxed">
+            يعمل بسلاسة على الشاشات الذكية، أجهزة أندرويد بوكس، أبل تي في، الهواتف الذكية، وأجهزة الكمبيوتر وMAG.
+          </p>
+        </div>
 
-          <blockquote data-i18n="card_quote"
-            class="text-sm text-theme-secondary italic border-r-4 border-[#0EA5E9] pr-4 py-2 leading-relaxed liquid-glass rounded-xl">
-            "شاهد المباريات العالمية بجودة 4K حقيقية بدون تأخير، واستمتع بمكتبة سينمائية متجددة يومياً على كافة أجهزتك."
-          </blockquote>
-
-          <div class="space-y-3 pt-2">
-            <div class="flex items-center justify-between text-xs liquid-glass p-3.5 rounded-xl">
-              <span data-i18n="card_devices_label" class="font-semibold text-theme-secondary">الأجهزة المدعومة</span>
-              <span class="font-bold text-[#0EA5E9]">Smart TV, Android, Apple, FireStick</span>
-            </div>
-            <div class="flex items-center justify-between text-xs liquid-glass p-3.5 rounded-xl">
-              <span data-i18n="card_support_label" class="font-semibold text-theme-secondary">خدمة العملاء</span>
-              <span data-i18n="card_support_val" class="font-bold text-emerald-400">واتساب مباشر 24/7</span>
-            </div>
+        <div class="liquid-glass p-8 rounded-[24px] card-hover">
+          <div
+            class="w-14 h-14 rounded-2xl liquid-glass-strong text-emerald-400 flex items-center justify-center text-2xl mb-6 shadow-sm">
+            <i class="fa-brands fa-whatsapp"></i>
           </div>
+          <h3 data-i18n="why_card2_title" class="text-xl font-extrabold text-theme-primary mb-3">تفعيل سريع عبر الواتساب
+          </h3>
+          <p data-i18n="why_card2_desc" class="text-theme-secondary text-sm leading-relaxed">
+            لا خطوات معقدة. اختر باقتك واستلم بيانات اشتراكك ورابط التشغيل مباشرة عبر الواتساب خلال دقائق معدودة.
+          </p>
+        </div>
 
-          <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs text-theme-secondary">
-            <span data-i18n="card_guarantee" class="flex items-center gap-1.5 font-bold"><i
-                class="fa-solid fa-shield-halved text-emerald-400"></i> خوادم حماية وموازنة الحمل</span>
-            <span data-i18n="brand_title" class="font-extrabold text-[#0EA5E9]">Quick & Quality</span>
+        <div class="liquid-glass p-8 rounded-[24px] card-hover">
+          <div
+            class="w-14 h-14 rounded-2xl liquid-glass-strong text-[#0EA5E9] flex items-center justify-center text-2xl mb-6 shadow-sm">
+            <i class="fa-solid fa-server"></i>
           </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================
-      3. DETACHED FEATURE BADGES STRIP
-     ========================================== -->
-  <section class="relative z-20 max-w-6xl mx-auto px-4 sm:px-6 mb-16">
-    <div class="liquid-glass rounded-2xl p-4 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-
-      <!-- Badge 1 -->
-      <div class="flex items-center gap-4 p-4 rounded-xl liquid-glass">
-        <div class="p-3.5 rounded-xl liquid-glass-strong text-[#0EA5E9] text-xl">
-          <i class="fa-solid fa-shield-halved"></i>
-        </div>
-        <div>
-          <h4 data-i18n="badge_1_title" class="font-extrabold text-sm text-theme-primary">ضمان عدم التقطيع</h4>
-          <p data-i18n="badge_1_desc" class="text-xs text-theme-secondary font-medium">سيرفرات فائقة السرعة وموزعة
-            عالمياً</p>
-        </div>
-      </div>
-
-      <!-- Badge 2 -->
-      <div class="flex items-center gap-4 p-4 rounded-xl liquid-glass">
-        <div class="p-3.5 rounded-xl liquid-glass-strong text-emerald-400 text-xl">
-          <i class="fa-brands fa-whatsapp"></i>
-        </div>
-        <div>
-          <h4 data-i18n="badge_2_title" class="font-extrabold text-sm text-theme-primary">دعم فني 24/7 عبر الواتساب</h4>
-          <p data-i18n="badge_2_desc" class="text-xs text-theme-secondary font-medium">مساعدة فورية وإرشادات خطوة بخطوة
+          <h3 data-i18n="why_card3_title" class="text-xl font-extrabold text-theme-primary mb-3">سيرفرات احتياطية فائقة
+          </h3>
+          <p data-i18n="why_card3_desc" class="text-slate-400 text-sm leading-relaxed">
+            تقنية التحويل التلقائي تضمّن لك استمرار البث وسلاسة المشاهدة حتى خلال أضخم البطولات والدوريات العالمية.
           </p>
         </div>
       </div>
+    </section>
 
-      <!-- Badge 3 -->
-      <div class="flex items-center gap-4 p-4 rounded-xl liquid-glass">
-        <div class="p-3.5 rounded-xl liquid-glass-strong text-[#0EA5E9] text-xl">
-          <i class="fa-solid fa-arrows-rotate"></i>
+    <!-- ==========================================
+        5. FEATURED SUBSCRIPTION BANNER
+       ========================================== -->
+    <section
+      class="py-16 liquid-glass-strong rounded-[40px] max-w-7xl mx-auto px-6 relative overflow-hidden my-12 shadow-2xl">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-[#0EA5E9]/10 rounded-full blur-3xl -z-0"></div>
+      <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <span data-i18n="most_popular"
+            class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-3.5 py-1.5 inline-block">الباقة
+            الأكثر طلباً ⭐</span>
+          <h2 data-i18n="plan_vip_title" class="text-3xl sm:text-4xl font-black text-theme-primary">باقة VIP Cinema & TV
+          </h2>
+          <p data-i18n="plan_vip_sub" class="text-theme-secondary text-sm sm:text-base leading-relaxed max-w-2xl">
+            الباقة الشاملة الأكثر طلباً للمشاهدة العائلية والسينما مع أفضل السيرفرات الرياضية بجودة 4K.
+          </p>
         </div>
-        <div>
-          <h4 data-i18n="badge_3_title" class="font-extrabold text-sm text-theme-primary">تحديثات سينمائية يومية</h4>
-          <p data-i18n="badge_3_desc" class="text-xs text-theme-secondary font-medium">إضافة أحدث الأفلام والمسلسلات
-            حصرياً</p>
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4">
+          <button
+            onclick="orderViaWhatsApp('plan_vip_title', '$25', '3 Months', '20,000+ Channels, 50,000+ VODs, 4K Ultra HD, 24/7 WhatsApp')"
+            class="liquid-glass-strong rounded-full w-full py-4 px-6 text-white font-extrabold text-center shadow-lg transition-all flex items-center justify-center gap-3 bg-[#0EA5E9]/30 hover:bg-[#0EA5E9]/50">
+            <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i> <span data-i18n="btn_subscribe_now">اشترك الآن
+              عبر الواتساب</span>
+          </button>
+          <a href="subscriptions.html" data-i18n="btn_view_plans"
+            class="liquid-glass rounded-full w-full py-3.5 px-6 text-theme-primary font-bold text-center transition-all block">
+            عرض الاشتراكات
+          </a>
         </div>
       </div>
-
-    </div>
-  </section>
-
-  <!-- ==========================================
-      4. WHY CHOOSE US HIGHLIGHTS
-     ========================================== -->
-  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center space-y-3 mb-14">
-      <span data-i18n="why_title_badge"
-        class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 inline-block">تميز
-        معنا</span>
-      <h2 data-i18n="why_heading" class="text-3xl sm:text-4xl font-black text-theme-primary">لماذا تختار Quick &
-        Quality؟</h2>
-      <p data-i18n="why_desc" class="text-theme-secondary max-w-2xl mx-auto text-sm leading-relaxed">
-        نستخدم أحدث تقنيات البث الشبكي لتوفير تجربة مشاهدة سينمائية مستقرة بدون أي تقطيع حتى في أوقات ذروة المباريات
-        الكبرى.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="liquid-glass p-8 rounded-[24px] card-hover">
-        <div
-          class="w-14 h-14 rounded-2xl liquid-glass-strong text-[#0EA5E9] flex items-center justify-center text-2xl mb-6 shadow-sm">
-          <i class="fa-solid fa-tv"></i>
-        </div>
-        <h3 data-i18n="why_card1_title" class="text-xl font-extrabold text-theme-primary mb-3">توافق شامل مع جميع
-          الأجهزة</h3>
-        <p data-i18n="why_card1_desc" class="text-theme-secondary text-sm leading-relaxed">
-          يعمل بسلاسة على الشاشات الذكية، أجهزة أندرويد بوكس، أبل تي في، الهواتف الذكية، وأجهزة الكمبيوتر وMAG.
-        </p>
-      </div>
-
-      <div class="liquid-glass p-8 rounded-[24px] card-hover">
-        <div
-          class="w-14 h-14 rounded-2xl liquid-glass-strong text-emerald-400 flex items-center justify-center text-2xl mb-6 shadow-sm">
-          <i class="fa-brands fa-whatsapp"></i>
-        </div>
-        <h3 data-i18n="why_card2_title" class="text-xl font-extrabold text-theme-primary mb-3">تفعيل سريع عبر الواتساب
-        </h3>
-        <p data-i18n="why_card2_desc" class="text-theme-secondary text-sm leading-relaxed">
-          لا خطوات معقدة. اختر باقتك واستلم بيانات اشتراكك ورابط التشغيل مباشرة عبر الواتساب خلال دقائق معدودة.
-        </p>
-      </div>
-
-      <div class="liquid-glass p-8 rounded-[24px] card-hover">
-        <div
-          class="w-14 h-14 rounded-2xl liquid-glass-strong text-[#0EA5E9] flex items-center justify-center text-2xl mb-6 shadow-sm">
-          <i class="fa-solid fa-server"></i>
-        </div>
-        <h3 data-i18n="why_card3_title" class="text-xl font-extrabold text-theme-primary mb-3">سيرفرات احتياطية فائقة
-        </h3>
-        <p data-i18n="why_card3_desc" class="text-slate-400 text-sm leading-relaxed">
-          تقنية التحويل التلقائي تضمّن لك استمرار البث وسلاسة المشاهدة حتى خلال أضخم البطولات والدوريات العالمية.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-      5. FEATURED SUBSCRIPTION BANNER
-     ========================================== -->
-  <section
-    class="py-16 liquid-glass-strong rounded-[40px] max-w-7xl mx-auto px-6 relative overflow-hidden my-12 shadow-2xl">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-[#0EA5E9]/10 rounded-full blur-3xl -z-0"></div>
-    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-      <div class="lg:col-span-8 space-y-4">
-        <span data-i18n="most_popular"
-          class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-3.5 py-1.5 inline-block">الباقة
-          الأكثر طلباً ⭐</span>
-        <h2 data-i18n="plan_vip_title" class="text-3xl sm:text-4xl font-black text-theme-primary">باقة VIP Cinema & TV
-        </h2>
-        <p data-i18n="plan_vip_sub" class="text-theme-secondary text-sm sm:text-base leading-relaxed max-w-2xl">
-          الباقة الشاملة الأكثر طلباً للمشاهدة العائلية والسينما مع أفضل السيرفرات الرياضية بجودة 4K.
-        </p>
-      </div>
-      <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4">
-        <button
-          onclick="orderViaWhatsApp('plan_vip_title', '$25', '3 Months', '20,000+ Channels, 50,000+ VODs, 4K Ultra HD, 24/7 WhatsApp')"
-          class="liquid-glass-strong rounded-full w-full py-4 px-6 text-white font-extrabold text-center shadow-lg transition-all flex items-center justify-center gap-3 bg-[#0EA5E9]/30 hover:bg-[#0EA5E9]/50">
-          <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i> <span data-i18n="btn_subscribe_now">اشترك الآن
-            عبر الواتساب</span>
-        </button>
-        <a href="subscriptions.html" data-i18n="btn_view_plans"
-          class="liquid-glass rounded-full w-full py-3.5 px-6 text-theme-primary font-bold text-center transition-all block">
-          عرض الاشتراكات
-        </a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- ==========================================
       6. FOOTER
@@ -262,8 +283,14 @@
   <div id="footer"></div>
 
   <script src="assets/js/loader.js"></script>
-
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/dataService.js"></script>
+  <script src="assets/js/components/loadingState.js"></script>
+  <script src="assets/js/components/emptyState.js"></script>
+  <script src="assets/js/components/filters.js"></script>
+  <script src="assets/js/components/planCard.js"></script>
+  <script src="assets/js/subscriptions.js"></script>
+  <script src="assets/js/router.js"></script>
 </body>
 
 </html>

@@ -4,6 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('qq_theme') || 'dark';
+        const savedLang = localStorage.getItem('language') || localStorage.getItem('qq_lang') || 'ar';
+        const theme = savedTheme === 'light' ? 'light' : 'dark';
+        const lang = savedLang === 'en' ? 'en' : 'ar';
+        const root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        root.setAttribute('lang', lang);
+        root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        root.classList.add('is-loading');
+        root.style.colorScheme = theme;
+      } catch (e) {}
+    })();
+  </script>
   <title>Quick & Quality - FAQ & Support | الأسئلة الشائعة</title>
   <meta name="description"
     content="مركز المساعدة والأسئلة الشائعة حول كيفية التشغيل، التفعيل الفوري والتطبيقات المدعومة لخدمة Quick & Quality." />
@@ -74,240 +90,160 @@
   <!-- HEADER -->
   <div id="header"></div>
 
-  <!-- FAQ SECTION -->
-  <section class="py-12 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6">
-    <!-- Header Title -->
-    <div class="text-center space-y-3 mb-8">
-      <span data-i18n="faq_title_badge"
-        class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 inline-block shadow-sm border border-[#0EA5E9]/30">
-        مركز المساعدة
-      </span>
-      <h1 data-i18n="faq_heading" class="text-2xl sm:text-4xl md:text-5xl font-black text-theme-primary leading-tight">
-        الأسئلة الشائعة والإرشادات
-      </h1>
-    </div>
+  <!-- MAIN DYNAMIC CONTENT CONTAINER -->
+  <main id="app-content">
+    <!-- FAQ SECTION -->
+    <section class="py-12 sm:py-20 max-w-4xl mx-auto px-4 sm:px-6">
+      <!-- Header Title -->
+      <div class="text-center space-y-3 mb-8">
+        <span data-i18n="faq_title_badge"
+          class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 inline-block shadow-sm border border-[#0EA5E9]/30">
+          مركز المساعدة
+        </span>
+        <h1 data-i18n="faq_heading" class="text-2xl sm:text-4xl md:text-5xl font-black text-theme-primary leading-tight">
+          الأسئلة الشائعة والإرشادات
+        </h1>
+      </div>
 
-    <!-- Live Search Input -->
-    <div class="relative max-w-xl mx-auto mb-8">
-      <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-theme-secondary transition-colors group-focus-within:text-[#0EA5E9]"></i>
-      <input type="text" id="faq-search" data-i18n="faq_search_placeholder" placeholder="ابحث في الأسئلة الشائعة..."
-        class="w-full py-3.5 pr-11 pl-4 rounded-full liquid-glass focus:outline-none focus:ring-2 focus:ring-[#0EA5E9]/50 text-sm text-theme-primary transition-all placeholder:text-theme-secondary shadow-lg" />
-    </div>
+      <!-- Live Search Input -->
+      <div class="relative max-w-xl mx-auto mb-8">
+        <i class="fa-solid fa-magnifying-glass absolute right-4 top-1/2 -translate-y-1/2 text-theme-secondary transition-colors group-focus-within:text-[#0EA5E9]"></i>
+        <input type="text" id="faq-search" data-i18n="faq_search_placeholder" placeholder="ابحث في الأسئلة الشائعة..."
+          class="w-full py-3.5 pr-11 pl-4 rounded-full liquid-glass focus:outline-none focus:ring-2 focus:ring-[#0EA5E9]/50 text-sm text-theme-primary transition-all placeholder:text-theme-secondary shadow-lg" />
+      </div>
 
-    <!-- Category Filter Tabs (تصميم زجاجي داكن أنيق مريح للعين) -->
-<div class="faq-filter-container p-1.5 rounded-full max-w-2xl mx-auto mb-10 transition-all">
-  <div class="flex items-center justify-between gap-1 sm:gap-2 overflow-x-auto no-scrollbar p-1">
-    <button data-category="all"
-      class="faq-cat-btn active bg-transparent flex-1 min-w-[70px] sm:min-w-[90px] rounded-full px-3 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold border border-transparent whitespace-nowrap text-center transition-all">
-      <span data-i18n="faq_cat_all">الكل</span>
-    </button>
-    <button data-category="activation"
-      class="faq-cat-btn bg-transparent flex-1 min-w-[80px] sm:min-w-[100px] rounded-full px-3 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold border border-transparent whitespace-nowrap text-center transition-all">
-      <span data-i18n="faq_cat_activation">التفعيل</span>
-    </button>
-    <button data-category="apps"
-      class="faq-cat-btn bg-transparent flex-1 min-w-[80px] sm:min-w-[100px] rounded-full px-3 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold border border-transparent whitespace-nowrap text-center transition-all">
-      <span data-i18n="faq_cat_apps">التطبيقات</span>
-    </button>
-    <button data-category="devices"
-      class="faq-cat-btn bg-transparent flex-1 min-w-[80px] sm:min-w-[100px] rounded-full px-3 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold border border-transparent whitespace-nowrap text-center transition-all">
-      <span data-i18n="faq_cat_devices">الأجهزة</span>
-    </button>
-  </div>
-</div>
-    </div>
-
-    <!-- FAQ Accordions Container -->
-    <div id="faq-list" class="space-y-4 min-h-[300px]">
-      
-      <!-- Item 1 -->
-      <div data-category="activation" class="faq-item show-item liquid-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#0EA5E9]/40 transition-all">
-        <button type="button"
-          class="faq-btn w-full p-5 sm:p-6 text-right font-extrabold text-theme-primary text-sm sm:text-base md:text-lg flex justify-between items-center gap-4 hover:text-[#0EA5E9] transition-colors">
-          <span data-i18n="q1">كيف أستلم بيانات اشتراكي بعد الطلب؟</span>
-          <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-            <i class="fa-solid fa-chevron-down text-theme-secondary transition-transform duration-300 icon-arrow text-xs"></i>
-          </div>
-        </button>
-        <div class="faq-content-wrapper">
-          <div class="faq-content-inner">
-            <div data-i18n="a1" class="px-5 sm:px-6 pb-6 text-theme-secondary text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
-              التفعيل فوري ومباشر! فور تواصلك معنا على الواتساب وإتمام الطلب، ستصلك بيانات الاشتراك (رابط M3U أو Xtream Codes) فوراً مع طريقة الإعداد.
-            </div>
-          </div>
+      <!-- Category Filter Tabs -->
+      <div class="faq-filter-container p-1.5 rounded-full max-w-2xl mx-auto mb-10 transition-all">
+        <div class="flex items-center justify-between gap-1 sm:gap-2 overflow-x-auto no-scrollbar p-1">
+          <button data-category="all"
+            class="faq-cat-btn active bg-transparent flex-1 min-w-[70px] sm:min-w-[90px] rounded-full px-3 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold border border-transparent whitespace-nowrap text-center transition-all">
+            <span data-i18n="faq_cat_all">الكل</span>
+          </button>
+          <button data-category="activation"
+            class="faq-cat-btn bg-transparent flex-1 min-w-[80px] sm:min-w-[100px] rounded-full px-3 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold border border-transparent whitespace-nowrap text-center transition-all">
+            <span data-i18n="faq_cat_activation">التفعيل</span>
+          </button>
+          <button data-category="apps"
+            class="faq-cat-btn bg-transparent flex-1 min-w-[80px] sm:min-w-[100px] rounded-full px-3 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold border border-transparent whitespace-nowrap text-center transition-all">
+            <span data-i18n="faq_cat_apps">التطبيقات</span>
+          </button>
+          <button data-category="devices"
+            class="faq-cat-btn bg-transparent flex-1 min-w-[80px] sm:min-w-[100px] rounded-full px-3 sm:px-5 py-2.5 text-xs sm:text-sm font-extrabold border border-transparent whitespace-nowrap text-center transition-all">
+            <span data-i18n="faq_cat_devices">الأجهزة</span>
+          </button>
         </div>
       </div>
 
-      <!-- Item 2 -->
-      <div data-category="apps" class="faq-item show-item liquid-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#0EA5E9]/40 transition-all">
-        <button type="button"
-          class="faq-btn w-full p-5 sm:p-6 text-right font-extrabold text-theme-primary text-sm sm:text-base md:text-lg flex justify-between items-center gap-4 hover:text-[#0EA5E9] transition-colors">
-          <span data-i18n="q2">ما هي التطبيقات الموصى بها لتشغيل القنوات؟</span>
-          <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-            <i class="fa-solid fa-chevron-down text-theme-secondary transition-transform duration-300 icon-arrow text-xs"></i>
-          </div>
-        </button>
-        <div class="faq-content-wrapper">
-          <div class="faq-content-inner">
-            <div data-i18n="a2" class="px-5 sm:px-6 pb-6 text-theme-secondary text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
-              خدمتنا تعمل بكفاءة عالية على تطبيقات مثل IBO Player و IPTV Smarters Pro و TiviMate و GSE Smart IPTV. يقدم فريقنا الدعم الكامل خطوة بخطوة أثناء التفعيل.
+      <!-- FAQ Accordions Container -->
+      <div id="faq-list" class="space-y-4 min-h-[300px]">
+        <!-- Item 1 -->
+        <div data-category="activation" class="faq-item show-item liquid-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#0EA5E9]/40 transition-all">
+          <button type="button"
+            class="faq-btn w-full p-5 sm:p-6 text-right font-extrabold text-theme-primary text-sm sm:text-base md:text-lg flex justify-between items-center gap-4 hover:text-[#0EA5E9] transition-colors">
+            <span data-i18n="q1">كيف أستلم بيانات اشتراكي بعد الطلب؟</span>
+            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+              <i class="fa-solid fa-chevron-down text-theme-secondary transition-transform duration-300 icon-arrow text-xs"></i>
+            </div>
+          </button>
+          <div class="faq-content-wrapper">
+            <div class="faq-content-inner">
+              <div data-i18n="a1" class="px-5 sm:px-6 pb-6 text-theme-secondary text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
+                التفعيل فوري ومباشر! فور تواصلك معنا على الواتساب وإتمام الطلب، ستصلك بيانات الاشتراك (رابط M3U أو Xtream Codes) فوراً مع طريقة الإعداد.
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Item 3 -->
-      <div data-category="devices" class="faq-item show-item liquid-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#0EA5E9]/40 transition-all">
-        <button type="button"
-          class="faq-btn w-full p-5 sm:p-6 text-right font-extrabold text-theme-primary text-sm sm:text-base md:text-lg flex justify-between items-center gap-4 hover:text-[#0EA5E9] transition-colors">
-          <span data-i18n="q3">هل يمكنني مشاهدة البث على أكثر من جهاز؟</span>
-          <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-            <i class="fa-solid fa-chevron-down text-theme-secondary transition-transform duration-300 icon-arrow text-xs"></i>
-          </div>
-        </button>
-        <div class="faq-content-wrapper">
-          <div class="faq-content-inner">
-            <div data-i18n="a3" class="px-5 sm:px-6 pb-6 text-theme-secondary text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
-              يمكنك تثبيت الاشتراك على جميع أجهزتك، وتعتمد المشاهدة المتزامنة في نفس الوقت على نوع الباقة المختارة. تتيح لك باقة VIP مرونة عالية.
+        <!-- Item 2 -->
+        <div data-category="apps" class="faq-item show-item liquid-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#0EA5E9]/40 transition-all">
+          <button type="button"
+            class="faq-btn w-full p-5 sm:p-6 text-right font-extrabold text-theme-primary text-sm sm:text-base md:text-lg flex justify-between items-center gap-4 hover:text-[#0EA5E9] transition-colors">
+            <span data-i18n="q2">ما هي التطبيقات الموصى بها لتشغيل القنوات؟</span>
+            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+              <i class="fa-solid fa-chevron-down text-theme-secondary transition-transform duration-300 icon-arrow text-xs"></i>
+            </div>
+          </button>
+          <div class="faq-content-wrapper">
+            <div class="faq-content-inner">
+              <div data-i18n="a2" class="px-5 sm:px-6 pb-6 text-theme-secondary text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
+                خدمتنا تعمل بكفاءة عالية على تطبيقات مثل IBO Player و IPTV Smarters Pro و TiviMate و GSE Smart IPTV. يقدم فريقنا الدعم الكامل خطوة بخطوة أثناء التفعيل.
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Item 4 -->
-      <div data-category="activation" class="faq-item show-item liquid-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#0EA5E9]/40 transition-all">
-        <button type="button"
-          class="faq-btn w-full p-5 sm:p-6 text-right font-extrabold text-theme-primary text-sm sm:text-base md:text-lg flex justify-between items-center gap-4 hover:text-[#0EA5E9] transition-colors">
-          <span data-i18n="q4">ماذا أفعل في حال واجهت أي استفسار أو مشكلة في البث؟</span>
-          <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
-            <i class="fa-solid fa-chevron-down text-theme-secondary transition-transform duration-300 icon-arrow text-xs"></i>
-          </div>
-        </button>
-        <div class="faq-content-wrapper">
-          <div class="faq-content-inner">
-            <div data-i18n="a4" class="px-5 sm:px-6 pb-6 text-theme-secondary text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
-              نحن نوفر تقنيات خوادم احتياطية تلقائية لمنع أي انقطاع. وفي حال وجود أي استفسار، فإن فريق الدعم المباشر متواجد على الواتساب 24/7 لخدمتك فوراً.
+        <!-- Item 3 -->
+        <div data-category="devices" class="faq-item show-item liquid-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#0EA5E9]/40 transition-all">
+          <button type="button"
+            class="faq-btn w-full p-5 sm:p-6 text-right font-extrabold text-theme-primary text-sm sm:text-base md:text-lg flex justify-between items-center gap-4 hover:text-[#0EA5E9] transition-colors">
+            <span data-i18n="q3">هل يمكنني مشاهدة البث على أكثر من جهاز؟</span>
+            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+              <i class="fa-solid fa-chevron-down text-theme-secondary transition-transform duration-300 icon-arrow text-xs"></i>
+            </div>
+          </button>
+          <div class="faq-content-wrapper">
+            <div class="faq-content-inner">
+              <div data-i18n="a3" class="px-5 sm:px-6 pb-6 text-theme-secondary text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
+                يمكنك تثبيت الاشتراك على جميع أجهزتك، وتعتمد المشاهدة المتزامنة في نفس الوقت على نوع الباقة المختارة. تتيح لك باقة VIP مرونة عالية.
+              </div>
             </div>
           </div>
         </div>
+
+        <!-- Item 4 -->
+        <div data-category="activation" class="faq-item show-item liquid-glass rounded-2xl overflow-hidden border border-white/10 hover:border-[#0EA5E9]/40 transition-all">
+          <button type="button"
+            class="faq-btn w-full p-5 sm:p-6 text-right font-extrabold text-theme-primary text-sm sm:text-base md:text-lg flex justify-between items-center gap-4 hover:text-[#0EA5E9] transition-colors">
+            <span data-i18n="q4">ماذا أفعل في حال واجهت أي استفسار أو مشكلة في البث؟</span>
+            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
+              <i class="fa-solid fa-chevron-down text-theme-secondary transition-transform duration-300 icon-arrow text-xs"></i>
+            </div>
+          </button>
+          <div class="faq-content-wrapper">
+            <div class="faq-content-inner">
+              <div data-i18n="a4" class="px-5 sm:px-6 pb-6 text-theme-secondary text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
+                نحن نوفر تقنيات خوادم احتياطية تلقائية لمنع أي انقطاع. وفي حال وجود أي استفسار، فإن فريق الدعم المباشر متواجد على الواتساب 24/7 لخدمتك فوراً.
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-    </div>
+      <!-- BANNER الدعم الفني -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 my-16">
+        <div class="liquid-glass-strong rounded-[32px] p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 border border-emerald-500/30 shadow-2xl">
+          <div class="space-y-2 text-center md:text-start">
+            <h2 data-i18n="footer_support_header" class="text-2xl sm:text-3xl font-black text-theme-primary tracking-wide">
+              الدعم الفني المباشر
+            </h2>
+            <p data-i18n="footer_support_desc" class="text-theme-secondary text-sm max-w-xl leading-relaxed">
+              تواصل معنا مباشرة للحصول على الاستفسارات والتفعيل الفوري للاشتراك عبر منصة الواتساب.
+            </p>
+          </div>
 
-    <!-- Direct WhatsApp Assistance Card -->
-    <!-- <div class="mt-14 sm:mt-16 liquid-glass-strong rounded-3xl p-6 sm:p-8 text-center space-y-4 border border-emerald-500/20 shadow-2xl">
-      <div class="w-12 h-12 rounded-2xl liquid-glass text-emerald-400 flex items-center justify-center text-2xl mx-auto shadow-md border border-emerald-500/30">
-        <i class="fa-brands fa-whatsapp"></i>
-      </div>
-      <h3 data-i18n="badge_2_title" class="text-lg sm:text-xl font-black text-theme-primary">دعم فني 24/7 عبر الواتساب</h3>
-      <p data-i18n="footer_support_desc" class="text-theme-secondary text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-        تواصل معنا مباشرة للحصول على الاستفسارات والتفعيل الفوري للاشتراك عبر منصة الواتساب:
-      </p>
-      <button onclick="openWhatsAppTrial()"
-        class="liquid-glass-strong rounded-full px-6 sm:px-8 py-3 sm:py-3.5 text-emerald-400 font-extrabold text-xs sm:text-sm shadow-lg transition-all inline-flex items-center gap-2.5 bg-emerald-500/20 hover:bg-emerald-500/30 hover:scale-105 active:scale-95">
-        <i class="fa-brands fa-whatsapp text-lg sm:text-xl text-emerald-400"></i>
-        <span data-i18n="footer_whatsapp_btn">محادثة دقيقة وفورية عبر الواتساب</span>
-      </button>
-    </div> -->
- <!-- BANNER الدعم الفني - متوافق تماماً مع Dark & Light Mode -->
-<section class="max-w-6xl mx-auto px-4 sm:px-6 my-16">
-  <div class="liquid-glass-strong rounded-[32px] p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6 border border-emerald-500/30 shadow-2xl">
-    
-    <!-- النصوص متكيفة عبر كلاسات الـ Theme -->
-    <div class="space-y-2 text-center md:text-start">
-      <h2 data-i18n="footer_support_header" class="text-2xl sm:text-3xl font-black text-theme-primary tracking-wide">
-        الدعم الفني المباشر
-      </h2>
-      <p data-i18n="footer_support_desc" class="text-theme-secondary text-sm max-w-xl leading-relaxed">
-        تواصل معنا مباشرة للحصول على الاستفسارات والتفعيل الفوري للاشتراك عبر منصة الواتساب.
-      </p>
-    </div>
-
-    <!-- زر الواتساب المتجاوب مع الحالتين -->
-    <button onclick="openWhatsAppTrial()"
-  class="w-full md:w-auto bg-[var(--whatsapp)] hover:bg-[#20bd5a] active:scale-95 text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-lg shadow-emerald-500/25 transition-all duration-300 flex items-center justify-center gap-3 shrink-0 group">
-  <i class="fa-brands fa-whatsapp text-2xl text-white group-hover:scale-110 transition-transform"></i>
-  <span data-i18n="footer_whatsapp_btn" class="whitespace-nowrap text-white font-bold opacity-100">تواصل معنا عبر الواتساب</span>
-</button>
-
-  </div>
-</section>
-  </section>
+          <button onclick="openWhatsAppTrial()"
+            class="w-full md:w-auto bg-[var(--whatsapp)] hover:bg-[#20bd5a] active:scale-95 text-white font-extrabold text-sm sm:text-base px-8 py-4 rounded-full shadow-lg shadow-emerald-500/25 transition-all duration-300 flex items-center justify-center gap-3 shrink-0 group">
+            <i class="fa-brands fa-whatsapp text-2xl text-white group-hover:scale-110 transition-transform"></i>
+            <span data-i18n="footer_whatsapp_btn" class="whitespace-nowrap text-white font-bold opacity-100">تواصل معنا عبر الواتساب</span>
+          </button>
+        </div>
+      </section>
+    </section>
+  </main>
 
   <!-- FOOTER -->
   <div id="footer"></div>
 
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/main.js"></script>
-
-  <!-- FAQ Logic Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const faqBtns = document.querySelectorAll('.faq-btn');
-      const catBtns = document.querySelectorAll('.faq-cat-btn');
-      const faqItems = document.querySelectorAll('.faq-item');
-      const searchInput = document.getElementById('faq-search');
-
-      // 1. فتح وإغلاق الإجابات (Accordion Toggle)
-      faqBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const item = btn.closest('.faq-item');
-          const wrapper = item.querySelector('.faq-content-wrapper');
-          const arrow = item.querySelector('.icon-arrow');
-          const isOpen = wrapper.classList.contains('open');
-
-          // إغلاق كافة الأكورديونات المفتوحة الأخرى لأناقة أكبر
-          document.querySelectorAll('.faq-content-wrapper').forEach(w => w.classList.remove('open'));
-          document.querySelectorAll('.icon-arrow').forEach(a => a.style.transform = 'rotate(0deg)');
-
-          // فتح أو إغلاق الأكورديون الحالي
-          if (!isOpen) {
-            wrapper.classList.add('open');
-            if (arrow) arrow.style.transform = 'rotate(180deg)';
-          }
-        });
-      });
-
-      // 2. الفلترة حسب الأقسام والتنقل التفاعلي
-      catBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          catBtns.forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-
-          const category = btn.getAttribute('data-category');
-          filterFAQ(category, searchInput.value.trim());
-        });
-      });
-
-      // 3. البحث المباشر
-      searchInput.addEventListener('input', (e) => {
-        const activeCat = document.querySelector('.faq-cat-btn.active').getAttribute('data-category');
-        filterFAQ(activeCat, e.target.value.trim().toLowerCase());
-      });
-
-      // دالة الفلترة المشتركة
-      function filterFAQ(category, query) {
-        faqItems.forEach(item => {
-          const itemCat = item.getAttribute('data-category');
-          const text = item.textContent.toLowerCase();
-
-          const matchesCat = category === 'all' || itemCat === category;
-          const matchesQuery = !query || text.includes(query);
-
-          if (matchesCat && matchesQuery) {
-            item.classList.remove('hide-item');
-            item.classList.add('show-item');
-          } else {
-            item.classList.remove('show-item');
-            item.classList.add('hide-item');
-            // إغلاق المحتوى المفتوح إذا كان مخفياً
-            const wrapper = item.querySelector('.faq-content-wrapper');
-            if (wrapper) wrapper.classList.remove('open');
-          }
-        });
-      }
-    });
-  </script>
+  <script src="assets/js/dataService.js"></script>
+  <script src="assets/js/components/loadingState.js"></script>
+  <script src="assets/js/components/emptyState.js"></script>
+  <script src="assets/js/components/filters.js"></script>
+  <script src="assets/js/components/planCard.js"></script>
+  <script src="assets/js/subscriptions.js"></script>
+  <script src="assets/js/router.js"></script>
 </body>
 
 </html>

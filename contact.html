@@ -4,6 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('qq_theme') || 'dark';
+        const savedLang = localStorage.getItem('language') || localStorage.getItem('qq_lang') || 'ar';
+        const theme = savedTheme === 'light' ? 'light' : 'dark';
+        const lang = savedLang === 'en' ? 'en' : 'ar';
+        const root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        root.setAttribute('lang', lang);
+        root.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+        root.classList.add('is-loading');
+        root.style.colorScheme = theme;
+      } catch (e) {}
+    })();
+  </script>
   <title>Quick & Quality - Contact Us | تواصل معنا</title>
   <meta name="description"
     content="تواصل مع فريق Quick & Quality للحصول على الدعم الفني المباشر وتفعيل الاشتراك فوراً عبر الواتساب." />
@@ -22,48 +38,53 @@
      ========================================== -->
   <div id="header"></div>
 
+  <!-- MAIN DYNAMIC CONTENT CONTAINER -->
+  <main id="app-content">
+    <!-- CONTACT HERO & MAIN CONTENT -->
+    <section class="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center space-y-3 mb-12">
+        <span data-i18n="footer_support_header"
+          class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 inline-block">الدعم
+          الفني المباشر</span>
+        <h1 data-i18n="nav_contact" class="text-3xl sm:text-5xl font-black text-theme-primary">تواصل معنا</h1>
+        <p data-i18n="footer_support_desc" class="text-theme-secondary max-w-xl mx-auto text-sm leading-relaxed">
+          تواصل معنا مباشرة للحصول على الاستفسارات والتفعيل الفوري للاشتراك عبر منصة الواتساب.
+        </p>
+      </div>
 
-  <!-- Mobile Drawer Overlay Menu -->
-
-
-  <!-- CONTACT HERO & MAIN CONTENT -->
-  <section class="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6">
-    <div class="text-center space-y-3 mb-12">
-      <span data-i18n="footer_support_header"
-        class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 inline-block">الدعم
-        الفني المباشر</span>
-      <h1 data-i18n="nav_contact" class="text-3xl sm:text-5xl font-black text-theme-primary">تواصل معنا</h1>
-      <p data-i18n="footer_support_desc" class="text-theme-secondary max-w-xl mx-auto text-sm leading-relaxed">
-        تواصل معنا مباشرة للحصول على الاستفسارات والتفعيل الفوري للاشتراك عبر منصة الواتساب.
-      </p>
-    </div>
-
-    <div
-      class="liquid-glass-strong rounded-3xl p-8 sm:p-12 text-center space-y-6 shadow-2xl border border-emerald-500/20">
       <div
-        class="w-16 h-16 rounded-2xl liquid-glass text-emerald-400 flex items-center justify-center text-3xl mx-auto shadow-md">
-        <i class="fa-brands fa-whatsapp"></i>
+        class="liquid-glass-strong rounded-3xl p-8 sm:p-12 text-center space-y-6 shadow-2xl border border-emerald-500/20">
+        <div
+          class="w-16 h-16 rounded-2xl liquid-glass text-emerald-400 flex items-center justify-center text-3xl mx-auto shadow-md">
+          <i class="fa-brands fa-whatsapp"></i>
+        </div>
+        <h2 data-i18n="badge_2_title" class="text-2xl font-black text-theme-primary">دعم فني 24/7 عبر الواتساب</h2>
+        <p data-i18n="card_support_val" class="text-theme-secondary text-base max-w-md mx-auto">
+          فريق الدعم المباشر متواجد على مدار 24 ساعة للإجابة عن جميع استفساراتكم والتفعيل الفوري للاشتراك.
+        </p>
+        <div class="pt-4">
+          <button onclick="openWhatsAppTrial()"
+            class="liquid-glass-strong rounded-full px-8 py-4 text-emerald-400 font-extrabold text-base shadow-xl transition-all inline-flex items-center gap-3 bg-emerald-500/20 hover:bg-emerald-500/30">
+            <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i> <span data-i18n="footer_whatsapp_btn">محادثة
+              دقيقة وفورية عبر الواتساب</span>
+          </button>
+        </div>
       </div>
-      <h2 data-i18n="badge_2_title" class="text-2xl font-black text-theme-primary">دعم فني 24/7 عبر الواتساب</h2>
-      <p data-i18n="card_support_val" class="text-theme-secondary text-base max-w-md mx-auto">
-        فريق الدعم المباشر متواجد على مدار 24 ساعة للإجابة عن جميع استفساراتكم والتفعيل الفوري للاشتراك.
-      </p>
-      <div class="pt-4">
-        <button onclick="openWhatsAppTrial()"
-          class="liquid-glass-strong rounded-full px-8 py-4 text-emerald-400 font-extrabold text-base shadow-xl transition-all inline-flex items-center gap-3 bg-emerald-500/20 hover:bg-emerald-500/30">
-          <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i> <span data-i18n="footer_whatsapp_btn">محادثة
-            دقيقة وفورية عبر الواتساب</span>
-        </button>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <!-- FOOTER -->
   <div id="footer"></div>
 
   <script src="assets/js/loader.js"></script>
-
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/dataService.js"></script>
+  <script src="assets/js/components/loadingState.js"></script>
+  <script src="assets/js/components/emptyState.js"></script>
+  <script src="assets/js/components/filters.js"></script>
+  <script src="assets/js/components/planCard.js"></script>
+  <script src="assets/js/subscriptions.js"></script>
+  <script src="assets/js/router.js"></script>
 </body>
 
 </html>
