@@ -71,6 +71,48 @@ const translations = {
     about_stat4_desc: "مشتركون يثقون في خدمتنا",
 
     // Subscriptions Page & Pricing
+    // Subscription New Design
+    filter_title: 'تصفية',
+  filter_all: 'الكل',
+  filter_server: 'السيرفر',
+  filter_duration: 'المدة الزمنية',
+  
+  // ترجمات مدد الاشتراكات
+  duration_1_month: '1 شهر',
+  duration_3_months: '3 أشهر',
+  duration_6_months: '6 أشهر',
+  duration_12_months: 'سنة ',
+  duration_24_months: 'سنتين',
+
+sub_badge: "✦ باقات IPTV المميزة",
+instant_activation: "⚡ تفعيل فوري",
+quality_4k: "جودة 4K",
+whatsapp_support: "دعم واتساب",
+
+filter_server: "السيرفر",
+filter_duration: "المدة",
+
+server_all: "جميع السيرفرات",
+server_spider: "Spider",
+server_neo: "Neo",
+server_hudk: "HUDK",
+
+duration_all: "جميع المدد",
+duration_3: "3 أشهر",
+duration_6: "6 أشهر",
+duration_12: "سنة",
+duration_24: "سنتين",
+
+show_more: "عرض المزيد",
+show_less: "عرض أقل",
+
+no_results_title: "لا توجد باقات متاحة",
+no_results_desc: "جرب تغيير الفلاتر للحصول على نتائج أخرى",
+
+plan_users: "المستخدمين",
+plan_channels: "القنوات",
+plan_features: "المميزات",
+
     sub_title_badge: "باقاتنا المميزة",
     sub_heading: "اختر باقة الترفيه المناسبة لك",
     sub_desc: "أسعار مرنة تناسب احتياجاتك الترفيهية مع دعم كامل لجودة 4K والتفعيل الفوري.",
@@ -218,6 +260,46 @@ const translations = {
     about_stat4_desc: "Happy subscribers worldwide",
 
     // Subscriptions Page & Pricing
+    // Subscription New Design
+filter_title: 'Filter',
+  filter_all: 'All',
+  filter_server: 'Server',
+  filter_duration: 'Duration',
+  
+  // Duration Translations
+  duration_1_month: '1 Month',
+  duration_3_months: '3 Months',
+  duration_6_months: '6 Months',
+  duration_12_months: '1 Year',
+duration_24_months: '2 Years',
+sub_badge: "✦ PREMIUM IPTV PLANS",
+instant_activation: "⚡ Instant Activation",
+quality_4k: "4K Quality",
+whatsapp_support: "WhatsApp Support",
+
+filter_server: "Server",
+filter_duration: "Duration",
+
+server_all: "All Servers",
+server_spider: "Spider",
+server_neo: "Neo",
+server_hudk: "HUDK",
+
+duration_all: "All Durations",
+duration_3: "3 Months",
+duration_6: "6 Months",
+duration_12: "1 Year",
+duration_24: "2 Years",
+
+show_more: "Show More",
+show_less: "Show Less",
+
+no_results_title: "No Plans Available",
+no_results_desc: "Try changing the filters to see other plans",
+
+plan_users: "Users",
+plan_channels: "Channels",
+plan_features: "Features",
     sub_title_badge: "Premium Packages",
     sub_heading: "Choose Your Entertainment Plan",
     sub_desc: "Flexible pricing tailored to your needs with full 4K support and instant activation.",

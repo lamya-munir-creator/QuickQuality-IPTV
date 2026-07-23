@@ -419,5 +419,47 @@ html[dir="ltr"] #mobile-drawer.hidden-drawer {
   }
 
 }
+/* زر الاشتراك */
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+    }
 
+    50%,100% {
+        transform: translateX(100%);
+    }
+}
+/* ==========================================================================
+   1. Clean Scrollbar for Filter Pills (إخفاء شريط التمرير مع بقاء السحب)
+   ========================================================================== */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
 
+/* ==========================================================================
+   2. Glassmorphic Smooth Transitions (حركات سلسة لعناصر الفلتر والزر)
+   ========================================================================== */
+[data-subscriptions-filters] button {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ==========================================================================
+   3. Custom Animations (أنيميشن اللمعان والنبض عند Hover)
+   ========================================================================== */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  50%, 100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shine {
+  animation: shine 3s infinite ease-in-out;
+}
