@@ -76,8 +76,8 @@
   </div>
 
   <!-- SUBSCRIPTIONS SECTION -->
-  <section class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="text-center space-y-3 mb-12">
+  <section class="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6" data-subscriptions-root>
+    <div class="text-center space-y-3 mb-10">
       <span data-i18n="sub_title_badge"
         class="liquid-glass rounded-full text-[#0EA5E9] font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 inline-block">باقاتنا
         المميزة</span>
@@ -88,149 +88,21 @@
       </p>
     </div>
 
-    <!-- DURATION PERIOD SWITCHER -->
-    <div class="flex justify-center mb-16">
-      <div class="liquid-glass rounded-full p-1.5 inline-flex gap-1.5 shadow-xl">
-        <button data-period="monthly"
-          class="duration-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-[#0EA5E9] text-white shadow-md transition-all">
-          <span data-i18n="period_monthly">شهري</span>
-        </button>
-        <button data-period="quarterly"
-          class="duration-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-theme-secondary hover:text-theme-primary transition-all">
-          <span data-i18n="period_quarterly">3 أشهر</span>
-        </button>
-        <button data-period="semiannual"
-          class="duration-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-theme-secondary hover:text-theme-primary transition-all">
-          <span data-i18n="period_semiannual">6 أشهر</span>
-        </button>
-        <button data-period="annual"
-          class="duration-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold text-theme-secondary hover:text-theme-primary transition-all">
-          <span data-i18n="period_annual">سنة كاملة</span>
-        </button>
-      </div>
+    <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+      <div data-subscriptions-summary class="text-sm font-semibold text-theme-secondary"></div>
+      <div data-subscriptions-filters class="w-full lg:w-auto"></div>
     </div>
 
-    <!-- SUBSCRIPTIONS GRID (3 CARDS) -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-
-      <!-- Card 1: Sports -->
-      <div data-plan-key="sports"
-        class="plan-card liquid-glass p-8 rounded-[28px] flex flex-col justify-between card-hover">
-        <div>
-          <h3 data-i18n="plan_sports_title" class="text-xl font-extrabold text-theme-primary">باقة الرياضة والبث المباشر
-          </h3>
-          <p data-i18n="plan_sports_sub" class="text-xs text-theme-secondary mt-1">مثالية لعشاق الرياضة والمباريات
-            العالمية</p>
-
-          <div class="my-6">
-            <span class="plan-price text-4xl font-black text-theme-primary">$12</span>
-            <span class="plan-duration text-theme-secondary text-sm"> / Monthly / شهر واحد</span>
-          </div>
-
-          <ul class="space-y-4 text-sm text-theme-secondary mb-8 font-medium">
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_low_latency">سيرفرات فائقة السرعة منخفضة التأخير</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_4k_quality">بث عالي الدقة Full HD & 4K</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_1_device">اتصال جهاز واحد</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_support_247">دعم فني وتفعيل عبر الواتساب 24/7</span></li>
-          </ul>
-        </div>
-
-        <button data-plan-name="باقة الرياضة والبث المباشر" data-plan-title-key="plan_sports_title"
-          data-features="Ultra-Low Latency, Full HD & 4K, 1 Device, 24/7 Support"
-          onclick="orderViaWhatsApp('plan_sports_title', '$12', 'Monthly', 'Ultra-Low Latency, Full HD & 4K, 1 Device, 24/7 Support')"
-          class="plan-order-btn liquid-glass-strong rounded-full w-full py-4 px-6 text-white font-bold text-center shadow-lg transition-all flex items-center justify-center gap-3 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/40">
-          <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i> <span data-i18n="btn_subscribe_now">اشترك الآن
-            عبر الواتساب</span>
-        </button>
-      </div>
-
-      <!-- Card 2: VIP Cinema & TV (Center / Most Popular) -->
-      <div data-plan-key="vip"
-        class="plan-card liquid-glass-strong p-8 rounded-[28px] flex flex-col justify-between relative lg:-translate-y-4">
-        <div data-i18n="most_popular"
-          class="absolute -top-4 left-1/2 -translate-x-1/2 liquid-glass-strong text-[#0EA5E9] border border-[#0EA5E9]/40 px-5 py-1.5 rounded-full text-xs font-black tracking-wider uppercase shadow-md">
-          الأكثر طلباً ⭐
-        </div>
-
-        <div>
-          <h3 data-i18n="plan_vip_title" class="text-2xl font-black text-theme-primary mt-2">باقة VIP Cinema & TV</h3>
-          <p data-i18n="plan_vip_sub" class="text-xs text-theme-secondary mt-1">الباقة الشاملة الأكثر طلباً للمشاهدة
-            العائلية والسينما</p>
-
-          <div class="my-6">
-            <span class="plan-price text-5xl font-black text-theme-primary">$10</span>
-            <span class="plan-duration text-theme-secondary text-sm"> / Monthly / شهر واحد</span>
-          </div>
-
-          <ul class="space-y-4 text-sm text-theme-secondary mb-8 font-medium">
-            <li class="flex items-center gap-3 font-bold text-theme-primary"><i
-                class="fa-solid fa-check text-[#0EA5E9] text-base"></i> <span data-i18n="feat_channels_count">20,000+
-                قناة و50,000+ فيلم ومسلسل</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_4k_quality">بث عالي الدقة Full HD & 4K</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_multi_device">توافق مع جميع الأجهزة الذكية</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_daily_updates">إضافات يومية للأفلام والمسلسلات</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_support_247">دعم فني وتفعيل عبر الواتساب 24/7</span></li>
-          </ul>
-        </div>
-
-        <button data-plan-name="باقة VIP Cinema & TV" data-plan-title-key="plan_vip_title"
-          data-features="20,000+ Channels & VODs, True 4K, Multi-Device, Daily VIP Updates, 24/7 Support"
-          onclick="orderViaWhatsApp('plan_vip_title', '$10', 'Monthly', '20,000+ Channels & VODs, True 4K, Multi-Device, Daily VIP Updates, 24/7 Support')"
-          class="plan-order-btn liquid-glass-strong rounded-full w-full py-4 px-6 text-white font-extrabold text-center shadow-xl transition-all flex items-center justify-center gap-3 bg-[#0EA5E9]/40 hover:bg-[#0EA5E9]/60">
-          <i class="fa-brands fa-whatsapp text-2xl text-emerald-400"></i> <span data-i18n="btn_subscribe_now">اشترك الآن
-            عبر الواتساب</span>
-        </button>
-      </div>
-
-      <!-- Card 3: Basic -->
-      <div class="plan-card liquid-glass p-8 rounded-[28px] flex flex-col justify-between card-hover">
-        <div>
-          <h3 data-i18n="plan_basic_title" class="text-xl font-extrabold text-theme-primary">الباقة الاقتصادية Basic
-          </h3>
-          <p data-i18n="plan_basic_sub" class="text-xs text-theme-secondary mt-1">القنوات الأساسية بقيمة ممتازة ومناسبة
-          </p>
-
-          <div class="my-6">
-            <span class="plan-price text-4xl font-black text-theme-primary">$7</span>
-            <span class="plan-duration text-theme-secondary text-sm"> / Monthly / شهر واحد</span>
-          </div>
-
-          <ul class="space-y-4 text-sm text-theme-secondary mb-8 font-medium">
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_essential_channels">القنوات الفضائية الأساسية بجودة HD</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_1_device">اتصال جهاز واحد</span></li>
-            <li class="flex items-center gap-3"><i class="fa-solid fa-check text-[#0EA5E9]"></i> <span
-                data-i18n="feat_support_247">دعم فني وتفعيل عبر الواتساب 24/7</span></li>
-          </ul>
-        </div>
-
-        <button data-plan-name="الباقة الاقتصادية Basic" data-plan-title-key="plan_basic_title"
-          data-features="Essential Live HD Channels, 1 Device Connection, 24/7 WhatsApp Support"
-          onclick="orderViaWhatsApp('plan_basic_title', '$7', 'Monthly', 'Essential Live HD Channels, 1 Device Connection, 24/7 WhatsApp Support')"
-          class="plan-order-btn liquid-glass-strong rounded-full w-full py-4 px-6 text-white font-bold text-center shadow-lg transition-all flex items-center justify-center gap-3 bg-[#0EA5E9]/20 hover:bg-[#0EA5E9]/40">
-          <i class="fa-brands fa-whatsapp text-xl text-emerald-400"></i> <span data-i18n="btn_subscribe_now">اشترك الآن
-            عبر الواتساب</span>
-        </button>
-      </div>
-
-    </div>
+    <div data-subscriptions-list class="min-h-[320px]"></div>
+    <div data-subscriptions-pagination class="mt-8 flex justify-center"></div>
   </section>
 
   <!-- CHANNEL PREVIEW FILTER -->
   <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 my-12">
     <div class="text-center space-y-3 mb-10">
-      <h2 data-i18n="filter_all" class="text-2xl sm:text-3xl font-black text-theme-primary">معاينة تصنيفات القنوات
+      <h2 data-i18n="channel_preview_title" class="text-2xl sm:text-3xl font-black text-theme-primary">معاينة تصنيفات القنوات
         والسينما</h2>
-      <p class="text-theme-secondary text-xs sm:text-sm">تصفح القنوات المتاحة حسب التصنيف</p>
+      <p data-i18n="channel_preview_desc" class="text-theme-secondary text-xs sm:text-sm">تصفح القنوات المتاحة حسب التصنيف</p>
     </div>
 
     <!-- Filter Tabs -->
@@ -256,8 +128,8 @@
           <i class="fa-solid fa-trophy"></i>
         </div>
         <div>
-          <h4 class="font-extrabold text-xs text-theme-primary">beIN Sports 4K</h4>
-          <span class="text-[10px] text-emerald-400 font-bold">Ultra HD Live</span>
+          <h4 data-i18n="channel_bein" class="font-extrabold text-xs text-theme-primary">beIN Sports 4K</h4>
+          <span data-i18n="channel_badge_live" class="text-[10px] text-emerald-400 font-bold">Ultra HD Live</span>
         </div>
       </div>
 
@@ -267,8 +139,8 @@
           <i class="fa-solid fa-football"></i>
         </div>
         <div>
-          <h4 class="font-extrabold text-xs text-theme-primary">SSC Sports HD</h4>
-          <span class="text-[10px] text-emerald-400 font-bold">Full HD Live</span>
+          <h4 data-i18n="channel_ssc" class="font-extrabold text-xs text-theme-primary">SSC Sports HD</h4>
+          <span data-i18n="channel_badge_live" class="text-[10px] text-emerald-400 font-bold">Full HD Live</span>
         </div>
       </div>
 
@@ -278,8 +150,8 @@
           <i class="fa-solid fa-film"></i>
         </div>
         <div>
-          <h4 class="font-extrabold text-xs text-theme-primary">OSN Cinema VIP</h4>
-          <span class="text-[10px] text-purple-400 font-bold">4K VOD</span>
+          <h4 data-i18n="channel_osn" class="font-extrabold text-xs text-theme-primary">OSN Cinema VIP</h4>
+          <span data-i18n="channel_badge_vod" class="text-[10px] text-purple-400 font-bold">4K VOD</span>
         </div>
       </div>
 
@@ -289,8 +161,8 @@
           <i class="fa-solid fa-clapperboard"></i>
         </div>
         <div>
-          <h4 class="font-extrabold text-xs text-theme-primary">Netflix Series VOD</h4>
-          <span class="text-[10px] text-purple-400 font-bold">Daily Updated</span>
+          <h4 data-i18n="channel_netflix" class="font-extrabold text-xs text-theme-primary">Netflix Series VOD</h4>
+          <span data-i18n="channel_badge_updated" class="text-[10px] text-purple-400 font-bold">Daily Updated</span>
         </div>
       </div>
     </div>
@@ -354,6 +226,12 @@
 
   <script src="assets/js/loader.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/dataService.js"></script>
+  <script src="assets/js/components/loadingState.js"></script>
+  <script src="assets/js/components/emptyState.js"></script>
+  <script src="assets/js/components/filters.js"></script>
+  <script src="assets/js/components/planCard.js"></script>
+  <script src="assets/js/subscriptions.js"></script>
 </body>
 
 </html>

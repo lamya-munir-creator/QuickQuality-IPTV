@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "beIN Sports 4K", "name_en": "beIN Sports 4K", "slug": "bein-sports-4k", "category": "sports" },
+  { "id": 2, "name": "SSC Sports HD", "name_en": "SSC Sports HD", "slug": "ssc-sports-hd", "category": "sports" },
+  { "id": 3, "name": "OSN Cinema VIP", "name_en": "OSN Cinema VIP", "slug": "osn-cinema-vip", "category": "cinema" },
+  { "id": 4, "name": "Netflix Series VOD", "name_en": "Netflix Series VOD", "slug": "netflix-series-vod", "category": "cinema" }
+]

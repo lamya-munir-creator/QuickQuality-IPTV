@@ -74,6 +74,28 @@ const translations = {
     sub_title_badge: "باقاتنا المميزة",
     sub_heading: "اختر باقة الترفيه المناسبة لك",
     sub_desc: "أسعار مرنة تناسب احتياجاتك الترفيهية مع دعم كامل لجودة 4K والتفعيل الفوري.",
+    subscriptions_summary: "تم العثور على {count} خطة",
+    subscriptions_filter_server: "الخادم",
+    subscriptions_filter_duration: "المدة",
+    subscriptions_filter_reset: "إعادة تعيين",
+    subscriptions_filter_all: "الكل",
+    subscriptions_loading: "جاري تحميل الباقات...",
+    subscriptions_empty_title: "لا توجد خطط متطابقة",
+    subscriptions_empty_desc: "جرب تغيير الفلاتر أو اختر مدة مختلفة لرؤية المزيد من الباقات.",
+    subscriptions_load_more: "عرض المزيد",
+    subscriptions_subscribe_btn: "اشترك عبر الواتساب",
+    subscriptions_featured_badge: "الأكثر طلباً ⭐",
+    subscriptions_new_badge: "خطة جديدة",
+    subscriptions_users_label: "المستخدمين",
+    channel_preview_title: "معاينة تصنيفات القنوات والسينما",
+    channel_preview_desc: "تصفح القنوات المتاحة حسب التصنيف",
+    channel_bein: "beIN Sports 4K",
+    channel_ssc: "SSC Sports HD",
+    channel_osn: "OSN Cinema VIP",
+    channel_netflix: "Netflix Series VOD",
+    channel_badge_live: "Ultra HD Live",
+    channel_badge_vod: "4K VOD",
+    channel_badge_updated: "Daily Updated",
 
     period_monthly: "شهري",
     period_quarterly: "3 أشهر",
@@ -199,6 +221,28 @@ const translations = {
     sub_title_badge: "Premium Packages",
     sub_heading: "Choose Your Entertainment Plan",
     sub_desc: "Flexible pricing tailored to your needs with full 4K support and instant activation.",
+    subscriptions_summary: "Found {count} plan(s)",
+    subscriptions_filter_server: "Server",
+    subscriptions_filter_duration: "Duration",
+    subscriptions_filter_reset: "Reset",
+    subscriptions_filter_all: "All",
+    subscriptions_loading: "Loading plans...",
+    subscriptions_empty_title: "No matching plans",
+    subscriptions_empty_desc: "Try changing the filters or choose a different duration to see more plans.",
+    subscriptions_load_more: "Show more",
+    subscriptions_subscribe_btn: "Subscribe via WhatsApp",
+    subscriptions_featured_badge: "Most Popular ⭐",
+    subscriptions_new_badge: "New plan",
+    subscriptions_users_label: "Users",
+    channel_preview_title: "Channel & Cinema Category Preview",
+    channel_preview_desc: "Browse available channels by category",
+    channel_bein: "beIN Sports 4K",
+    channel_ssc: "SSC Sports HD",
+    channel_osn: "OSN Cinema VIP",
+    channel_netflix: "Netflix Series VOD",
+    channel_badge_live: "Ultra HD Live",
+    channel_badge_vod: "4K VOD",
+    channel_badge_updated: "Daily Updated",
 
     period_monthly: "Monthly",
     period_quarterly: "3 Months",
@@ -265,6 +309,11 @@ let currentTheme = localStorage.getItem('theme') || localStorage.getItem('qq_the
 /**
  * Fast Client-Side Language Switcher (RTL / LTR)
  */
+function t(key, fallback = '') {
+  const lang = currentLang || 'ar';
+  return (translations[lang] && translations[lang][key]) ? translations[lang][key] : fallback;
+}
+
 function setLanguage(lang) {
   if (!translations[lang]) return;
   currentLang = lang;
@@ -292,6 +341,12 @@ function setLanguage(lang) {
     btn.setAttribute('aria-label', lang === 'ar' ? 'Switch to English' : 'التحويل للعربية');
     btn.setAttribute('title', lang === 'ar' ? 'Switch to English' : 'التحويل للعربية');
   });
+
+  document.dispatchEvent(new CustomEvent('app:language-change', { detail: { lang } }));
+
+  if (typeof window.refreshSubscriptionsView === 'function') {
+    window.refreshSubscriptionsView();
+  }
 }
 
 function toggleLanguage() {

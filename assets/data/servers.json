@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Spider",
+    "name_en": "Spider",
+    "slug": "spider",
+    "description": "سيرفر رياضي عالي الأداء",
+    "description_en": "High-performance sports server"
+  },
+  {
+    "id": 2,
+    "name": "Neo",
+    "name_en": "Neo",
+    "slug": "neo",
+    "description": "سيرفر سينمائي مستقر",
+    "description_en": "Stable cinema server"
+  },
+  {
+    "id": 3,
+    "name": "HUDK",
+    "name_en": "HUDK",
+    "slug": "hudk",
+    "description": "سيرفر شامل للترفيه",
+    "description_en": "All-in-one entertainment server"
+  }
+]
